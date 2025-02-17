@@ -34,7 +34,6 @@ func _ready() -> void:
 		_create_triangle(create_color)
 
 func _physics_process(delta: float) -> void:
-	if $Area3D/CollisionShape3D/RayCast3D.get_collider() != null: print($Area3D/CollisionShape3D/RayCast3D.get_collider().name)
 		#print($".", " speed is ", motion, " position is ", position)
 	_turn_to()
 	_check_overlapping_areas()
@@ -65,10 +64,8 @@ func _create_triangle(color) -> void:
 	pass
 
 func _check_speed(delta) -> void:
-	if Input.is_action_just_pressed("increase belt speed"):
-		global_shape_velocity += .25
-	if Input.is_action_just_pressed("decrease belt speed"):
-		if global_shape_velocity >= 0: global_shape_velocity -= .25
+	var parent = get_tree().get_nodes_in_group("levels")
+	global_shape_velocity = parent[0].production_speed
 
 	motion = create_velocity * delta * global_shape_velocity * int(on_belt)
 	get_tree() ##idk what its getting from tree yet but some global speed value? from uhhh.... the production machine?
@@ -77,7 +74,7 @@ func _check_speed(delta) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body.name == 'belt': print ("im on a belt!")
+
 	pass # Replace with function body.
 
 func _check_overlapping_areas() -> void:
@@ -113,7 +110,6 @@ func _bob() -> void:
 
 func _show_shadow() -> void:
 	if $Area3D/CollisionShape3D/RayCast3D.is_colliding():
-		print('collidin')
 		if ($Area3D/CollisionShape3D/RayCast3D.get_collider() != null):
 			$shadow.show()
 		else:
