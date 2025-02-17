@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://tee8f4gof21a"]
+
+[ext_resource type="Script" path="res://Scenes/objects/factory/bin.gd" id="1_pyusl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
+
+[node name="Bin" type="Area3D"]
+collision_layer = 0
+script = ExtResource("1_pyusl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5elh5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
