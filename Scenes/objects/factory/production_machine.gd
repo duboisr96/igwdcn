@@ -3,9 +3,9 @@ extends StaticBody3D
 
 @export var shape_scene: PackedScene
 
-@export var created_shape := 'circle'
-@export var created_color := 'red'
-@export var created_velocity := Vector3(.5,0,0)
+@export var shape_to_create := 'circle'
+@export var color_to_create := 'RED'
+@export var creating_velocity := Vector3(.5,0,0)
 
 
 #var make_shape
@@ -21,10 +21,12 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	print('creating shape from machine')
+	print('creating ', color_to_create, ' ', shape_to_create,' from machine')
 	var new_shape = shape_scene.instantiate()
-	new_shape.create_shape = 'circle' #shape of product to be produced
-	new_shape.create_color = 'red' #color of shape to be produced
-	new_shape.create_velocity = created_velocity #DIRECTION OF PROD LINE
+	new_shape.create_shape = shape_to_create #shape of product to be produced
+	new_shape.create_color = color_to_create #color of shape to be produced
+	new_shape.create_velocity = creating_velocity #DIRECTION OF PROD LINE
 	add_child(new_shape)
+	shape_to_create = 'square'
+	color_to_create = 'BLUE'
 	pass # Replace with function body.

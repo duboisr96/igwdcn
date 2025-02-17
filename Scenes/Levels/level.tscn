@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=7 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
+[ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,8 +34,11 @@ transform = Transform3D(1, 0, 0, 0, 0.979621, 0.200856, 0, -0.200856, 0.979621, 
 fov = 77.0723
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.26998, 0.431545, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15478, 0.448438, -0.189567)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123102, 0)
-size = Vector3(10, 0.2, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, -0.123102, -2.68958)
+size = Vector3(17.823, 0.2, 20.1609)
+
+[node name="Belt" parent="." instance=ExtResource("3_slbud")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.673463, 0.254696, 0)
