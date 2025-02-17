@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgyw3qvkgogt"]
+
+[ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="1_r0b3h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ei3wa"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_52ywi"]
+sky_material = SubResource("ProceduralSkyMaterial_ei3wa")
+
+[sub_resource type="Environment" id="Environment_ou5wg"]
+background_mode = 2
+sky = SubResource("Sky_52ywi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vowgi"]
+size = Vector3(40, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hil68"]
+size = Vector3(10, 10, 1)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ou5wg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.92277, 0)
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_r0b3h")]
+
+[node name="Environ" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environ/StaticBody3D"]
+size = Vector3(40, 0.5, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environ/StaticBody3D"]
+shape = SubResource("BoxShape3D_vowgi")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Environ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.2118)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environ/StaticBody3D2"]
+size = Vector3(10, 10, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environ/StaticBody3D2"]
+shape = SubResource("BoxShape3D_hil68")
