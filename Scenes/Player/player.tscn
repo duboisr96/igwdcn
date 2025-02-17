@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://damdyvodpy576"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06din"]
+[ext_resource type="PackedScene" uid="uid://dgkwsvc0ac1dj" path="res://Scenes/Player/Following Camera/following_camera_controller.tscn" id="2_5t5d2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5gi3j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cc6h"]
+albedo_color = Color(0.752804, 0.924169, 0.977967, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5g6jr"]
+material = SubResource("StandardMaterial3D_1cc6h")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_06din")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5gi3j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5g6jr")
+
+[node name="FollowingCameraController" parent="." instance=ExtResource("2_5t5d2")]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 1.4, 0)
+min_limit_x = -0.8
+max_limit_x = 0.2
