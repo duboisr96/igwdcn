@@ -5,10 +5,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
 
 [node name="Bin" type="Area3D"]
-collision_layer = 0
 script = ExtResource("1_pyusl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_5elh5")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
