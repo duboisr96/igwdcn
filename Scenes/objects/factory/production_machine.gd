@@ -3,8 +3,8 @@ extends StaticBody3D
 
 @export var shape_scene: PackedScene
 
-@export var shape_to_create := 'circle'
-@export var color_to_create := 'RED'
+@export var shape_to_create := 'triangle'
+@export var color_to_create := 'GREEN'
 @export var creating_velocity := Vector3(.5,0,0)
 
 
@@ -28,5 +28,5 @@ func _on_timer_timeout() -> void:
 	new_shape.create_velocity = creating_velocity #DIRECTION OF PROD LINE
 	add_child(new_shape)
 	shape_to_create = 'square'
-	color_to_create = 'BLUE'
+	color_to_create = 'DEEP_SKY_BLUE'
 	pass # Replace with function body.
