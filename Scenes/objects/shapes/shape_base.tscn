@@ -36,6 +36,7 @@ collide_with_areas = true
 
 [node name="shadow" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.0155222, -0.493061, -0.0260319)
+visible = false
 modulate = Color(0.00392157, 0.00392157, 0.00392157, 0.792157)
 texture = ExtResource("2_2injy")
 
