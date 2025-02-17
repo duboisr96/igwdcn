@@ -30,7 +30,7 @@ shadow_enabled = true
 [node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.979621, 0.200856, 0, -0.200856, 0.979621, 0, 0.661809, 3.8617)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831159, 3.15091)
 fov = 77.0723
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
@@ -38,6 +38,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15478, 0.448438, -0.189567)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, -0.123102, -2.68958)
+layers = 7
+use_collision = true
 size = Vector3(17.823, 0.2, 20.1609)
 
 [node name="Belt" parent="." instance=ExtResource("3_slbud")]
