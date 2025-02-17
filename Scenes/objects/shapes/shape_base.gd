@@ -1,0 +1,120 @@
+class_name Shape
+extends RigidBody3D
+
+##defne sprite using code
+
+@export var create_shape := ''
+@export var create_color := ''
+@export var create_velocity := Vector3.ZERO ##LETS SET IT TO AN ADDS TO 1 VALUE
+var motion = Vector3.ZERO
+var global_shape_velocity := 1.0
+
+var belt_speed_multiplier := 1.0
+
+#update png with filepath
+var shape_dict := {
+	"square" : preload("res://Scenes/objects/shapes/square.png"),
+	"circle" : preload("res://Scenes/objects/shapes/circle.png"),
+	"triangle" : preload("res://Scenes/objects/shapes/triangle.png"),
+	"pentagon" : 'pentagon.png'
+}
+var on_belt := false
+
+func _ready() -> void:
+	_bob()
+	if create_shape == 'circle':
+		print('creating cirlce')
+		_create_circle(create_color)
+		pass
+	
+	elif create_shape == 'square':
+		_create_square(create_color)
+		print('creating square')
+	elif create_shape == 'triangle':
+		_create_triangle(create_color)
+
+func _physics_process(delta: float) -> void:
+	if $Area3D/CollisionShape3D/RayCast3D.get_collider() != null: print($Area3D/CollisionShape3D/RayCast3D.get_collider().name)
+		#print($".", " speed is ", motion, " position is ", position)
+	_turn_to()
+	_check_overlapping_areas()
+	_check_speed(delta) #checks the speed of conveyor belt
+	move_and_collide(motion)
+	_show_shadow()
+
+
+func _create_circle(color) -> void:
+	#play noise
+	$Sprite3D.set_texture(shape_dict['circle'])
+	$Sprite3D.modulate = color
+	#modulate
+	pass
+	
+func _create_square(color) -> void:
+	#play noise
+	$Sprite3D.set_texture(shape_dict['square'])
+	$Sprite3D.modulate = color
+	#modulate
+	pass
+	
+func _create_triangle(color) -> void:
+	#play noise
+	$Sprite3D.set_texture(shape_dict['triangle'])
+	$Sprite3D.modulate = color
+	#modulate
+	pass
+
+func _check_speed(delta) -> void:
+	if Input.is_action_just_pressed("increase belt speed"):
+		global_shape_velocity += .25
+	if Input.is_action_just_pressed("decrease belt speed"):
+		if global_shape_velocity >= 0: global_shape_velocity -= .25
+
+	motion = create_velocity * delta * global_shape_velocity * int(on_belt)
+	get_tree() ##idk what its getting from tree yet but some global speed value? from uhhh.... the production machine?
+	#UPDATE SPEED, VELOCITY IS THE SAME, NEED TO MULITPLY VELOCITY BY SPEED
+
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.name == 'belt': print ("im on a belt!")
+	pass # Replace with function body.
+
+func _check_overlapping_areas() -> void:
+	for area in $Area3D.get_overlapping_areas():
+		if area.name == "Bin":
+			print("collected a ", create_color, ' ', create_shape, " in a ", area.shape, " bin!")
+			queue_free()
+			break
+		elif area.name == "Belt":  # Check if the area's name is "belt"
+			on_belt = true
+			#for body in $".".get_colliding_bodies():
+				#print('body')
+				#if body.name == 'Belt':
+					#$shadow.show()
+					#break
+			#print("On belt!")
+			break  # Exit loop early since we found a belt
+		else:
+			#print('not on belt or in bin! DANGER')
+			on_belt = false
+	if $Area3D.get_overlapping_areas().is_empty():
+		#print('not on belt or in bin! DANGER')
+		on_belt = false
+
+func _turn_to() -> void:
+	var camera = get_tree().get_current_scene().find_child("Camera3D", true, false)
+	$Sprite3D.look_at(camera.global_position)
+
+func _bob() -> void:
+	var tween = create_tween().set_loops()
+	tween.tween_property($Sprite3D, 'position', Vector3(0,Vector3($Sprite3D.position).y + .05, 0 ), 1)
+	tween.tween_property($Sprite3D, 'position', Vector3(0,Vector3($Sprite3D.position).y - .05, 0 ), 1)
+
+func _show_shadow() -> void:
+	if $Area3D/CollisionShape3D/RayCast3D.is_colliding():
+		print('collidin')
+		if ($Area3D/CollisionShape3D/RayCast3D.get_collider() != null):
+			$shadow.show()
+		else:
+			$shadow.hide()

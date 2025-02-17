@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw44xutd13o53"]
+
+[ext_resource type="Script" path="res://Scenes/objects/shapes/shape_base.gd" id="1_hn2r8"]
+[ext_resource type="Texture2D" uid="uid://blqjiwe1v66mc" path="res://Scenes/objects/shapes/circle.png" id="2_2injy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g31vr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_svyq8"]
+
+[node name="ShapeBase" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54768, 0)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 6
+linear_velocity = Vector3(0, -1, 0)
+constant_force = Vector3(0, -1, 0)
+script = ExtResource("1_hn2r8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_g31vr")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.3, 0)
+texture = ExtResource("2_2injy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_svyq8")
+
+[node name="RayCast3D" type="RayCast3D" parent="Area3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0952831, 0)
+target_position = Vector3(0, -0.1, 0)
+collision_mask = 7
+collide_with_areas = true
+
+[node name="shadow" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.0155222, -0.493061, -0.0260319)
+modulate = Color(0.00392157, 0.00392157, 0.00392157, 0.792157)
+texture = ExtResource("2_2injy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
