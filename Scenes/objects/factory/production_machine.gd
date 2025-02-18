@@ -41,11 +41,13 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	
+	print('timer timeout')
 	var parent = get_tree().get_nodes_in_group("levels")
 	if parent[0].production_speed != global_speed_multiplier:
+		$Timer.stop()
 		global_speed_multiplier = parent[0].production_speed
-		$Timer.wait_time = production_default / global_speed_multiplier
+		update_timer()
+		
 	rand = randi_range(1.0,100.0)
 	if rand <= error_top :
 		print('creating ', color_to_create, ' ', shape_to_create,' from machine')
@@ -109,9 +111,13 @@ func _output_shape(shape_num, color_num) -> void:
 	new_shape.create_velocity = default_velocity #DIRECTION OF PROD LINE
 	add_child(new_shape)
 
+func update_timer():
+	$Timer.wait_time = production_default / global_speed_multiplier
+	$Timer.start()
+
 
 func _decrease_error() -> void:
-	if error_top <= 94:
+	if error_top < 94:
 		error_top += 5
 		print('decreaing error, error total is ', 100 - error_top, '%')
 

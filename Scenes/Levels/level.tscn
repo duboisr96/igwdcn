@@ -31,6 +31,7 @@ light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
 [node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
+default_shape_to_create = 2
 default_color_to_create = 1
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
