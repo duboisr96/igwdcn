@@ -5,6 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
 
 [node name="Bin" type="Area3D"]
+collision_mask = 3
 script = ExtResource("1_pyusl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

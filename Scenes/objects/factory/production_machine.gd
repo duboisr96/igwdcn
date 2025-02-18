@@ -60,11 +60,12 @@ func _on_timer_timeout() -> void:
 	print($Timer.wait_time)
 
 func _handle_error(error_val) -> void:
+	var rando_spread := randi_range(1,10)
 	if error_amount == 1:
 		_output_shape(error_log[0], error_log[1])
 		pass
 	if error_amount == 0:
-		if error_val % 2:
+		if rando_spread <= 5:
 		###color and shape error###
 			var error_shape = randi_range(0,2)
 			while default_shape_to_create == error_shape:
@@ -79,7 +80,7 @@ func _handle_error(error_val) -> void:
 			_output_shape(error_shape, error_color)
 			#color and shape error
 			#append to erroring
-		elif error_val % 3:
+		elif rando_spread >5 && rando_spread <9:
 			var error_color = randi_range(0,2)
 			while default_color_to_create == error_color:
 				error_color = randi_range(0,2)

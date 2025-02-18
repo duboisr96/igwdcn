@@ -7,9 +7,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svyq8"]
 
-[node name="ShapeBase" type="RigidBody3D"]
+[node name="ShapeBase" type="RigidBody3D" groups=["grabbable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54768, 0)
+collision_layer = 2
+collision_mask = 53
 gravity_scale = 0.0
+lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 6
 linear_velocity = Vector3(0, -1, 0)
