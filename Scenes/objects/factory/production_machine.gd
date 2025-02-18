@@ -41,6 +41,11 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	
+	var parent = get_tree().get_nodes_in_group("levels")
+	if parent[0].production_speed != global_speed_multiplier:
+		global_speed_multiplier = parent[0].production_speed
+		$Timer.wait_time = production_default / global_speed_multiplier
 	rand = randi_range(1.0,100.0)
 	if rand <= error_top :
 		print('creating ', color_to_create, ' ', shape_to_create,' from machine')
@@ -49,8 +54,8 @@ func _on_timer_timeout() -> void:
 		#color_to_create = 'DEEP_SKY_BLUE'
 	else:
 		_handle_error(rand)
-	$Timer.wait_time = production_default / global_speed_multiplier
-	pass # Replace with function body.
+	
+	print($Timer.wait_time)
 
 func _handle_error(error_val) -> void:
 	if error_amount == 1:
