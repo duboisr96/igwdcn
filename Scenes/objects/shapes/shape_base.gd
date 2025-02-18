@@ -21,6 +21,7 @@ var shape_dict := {
 var on_belt := false
 
 func _ready() -> void:
+	add_to_group("grabbable")
 	_bob()
 	if create_shape == 'circle':
 		print('creating cirlce')

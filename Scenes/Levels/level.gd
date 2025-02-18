@@ -3,7 +3,8 @@ extends Node3D
 
 var root = get_tree()
 @export var production_speed := 1.0
-
+var health = 10
+var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("levels")  # Add to a global group
@@ -27,3 +28,13 @@ func _process(delta: float) -> void:
 		if production_speed > .25: 
 			production_speed -= .25
 			print('belt speed is ', production_speed, ' mph')
+
+
+func _on_bin_minus_one() -> void:
+	health -= 1
+	print(health, ' health remaining')
+
+
+func _on_bin_plus_one() -> void:
+	score += 1
+	print(score, ' total score')

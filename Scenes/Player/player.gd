@@ -21,6 +21,11 @@ var is_running := false
 @onready var move_state_machine = $AnimationTree.get('parameters/MoveStateMachine/playback')
 #nodes
 @onready var camera = $FollowingCameraController/Camera3D
+var can_grab := true
+var grabbable_obj : Node3D = null
+var grabbed_object : Node3D = null
+var am_holding := false
+
 
 #functions
 func _ready() -> void:
@@ -33,18 +38,21 @@ func _physics_process(_delta) -> void:
 	move_and_slide()
 	#Interact check
 	interact()
-	
+	_hold_obj()
 
 
 func interact() -> void:
 	var tween = create_tween()
+	##this is unrelated to currently chillin here
 	if Input.is_action_just_pressed("unlock mouse"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	
 	if (Input.is_action_pressed("interact")):
-		print("interact")
-		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .25 )
+		_grab(grabbable_obj)
+		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .1 )
 	else:
-		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 0, .25 )
+		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 0, .1 )
 	
 #handles horizontal movement
 func move_logic(delta) -> void:
@@ -77,31 +85,40 @@ func jump_logic(delta) -> void:
 	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
 	velocity.y -= gravity * delta
 		
-#Template 
-#const SPEED = 5.0
-#const JUMP_VELOCITY = 4.5
-#
-## Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-#
-#
-#func _physics_process(delta):
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("left", "right", "up", "down")
-	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#velocity.z = move_toward(velocity.z, 0, SPEED)
-#
-	#move_and_slide()
+
+func _on_grab_area_body_entered(body: Node3D) -> void:
+	if (body.is_in_group("grabbable") && !am_holding):
+		grabbable_obj = body
+		print('can be grabbed')
+
+
+func _on_grab_area_body_exited(body: Node3D) -> void:
+	if body == grabbable_obj:
+		grabbable_obj = null
+
+func _grab(obj):
+	if obj != null:
+		grabbed_object = obj 
+		grabbed_object.global_position = $man/GrabArea/CSGBox3D.global_position
+		var col_shape = grabbed_object.get_node('CollisionShape3D')
+		col_shape.disabled = true
+		am_holding = true  
+
+
+func _hold_obj():
+	
+	if grabbed_object != null and Input.is_action_pressed("interact") and am_holding:  # Replace "interact" with your actual input action
+		var shadow = grabbed_object.get_node('shadow')
+		grabbed_object.global_position = $man/GrabArea/CSGBox3D.global_position
+		am_holding = true
+		shadow.hide()
+	elif grabbed_object != null and not Input.is_action_pressed("interact"):
+		var shadow = grabbed_object.get_node('shadow')
+		var col_shape = grabbed_object.get_node('CollisionShape3D')
+		col_shape.disabled = false
+		grabbed_object = null  # Release the object when the button is released
+		am_holding = false
+		shadow.show()
+	else:
+		am_holding = false
+	

@@ -19,7 +19,7 @@ sky = SubResource("Sky_p2cvp")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Level" type="Node3D" groups=["levels"]]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_u28yv")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -36,6 +36,8 @@ default_color_to_create = 1
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22015, 0.448438, 0.12847)
+shape = "triangle"
+color = "RED"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, -0.123102, -2.68958)
@@ -48,3 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.737756, 0.254696, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 4.18358)
+
+[connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
+[connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]

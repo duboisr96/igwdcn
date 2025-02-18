@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://damdyvodpy576"]
+[gd_scene load_steps=18 format=3 uid="uid://damdyvodpy576"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06din"]
 [ext_resource type="PackedScene" uid="uid://dgkwsvc0ac1dj" path="res://Scenes/Player/Following Camera/following_camera_controller.tscn" id="2_5t5d2"]
@@ -11,6 +11,9 @@ albedo_color = Color(0.752804, 0.924169, 0.977967, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5g6jr"]
 material = SubResource("StandardMaterial3D_1cc6h")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbkvd"]
+size = Vector3(1, 1, 2)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kp441"]
 animation = &"Grab"
@@ -45,7 +48,7 @@ graph_offset = Vector2(-89, -1)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m1pfg"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ckjy8"]
-graph_offset = Vector2(-407, 19)
+graph_offset = Vector2(-355, 102)
 nodes/GrabAnimation/node = SubResource("AnimationNodeAnimation_kp441")
 nodes/GrabAnimation/position = Vector2(-200, 280)
 nodes/GrabBlend/node = SubResource("AnimationNodeBlend2_wg7ek")
@@ -58,6 +61,8 @@ nodes/output/position = Vector2(480, 140)
 node_connections = [&"GrabBlend", 0, &"MoveStateMachine", &"GrabBlend", 1, &"GrabAnimation", &"TimeScale", 0, &"GrabBlend", &"output", 0, &"TimeScale"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 29
 script = ExtResource("1_06din")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -78,12 +83,12 @@ max_limit_x = 0.2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="man/Armature" index="0"]
-bones/1/rotation = Quaternion(0.321499, 1.1288e-07, 8.39421e-09, 0.94691)
+bones/1/rotation = Quaternion(0.321499, 1.1288e-07, 2.19955e-08, 0.94691)
 bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
-bones/3/rotation = Quaternion(-2.21372e-08, -2.75361e-08, -0.253155, 0.967426)
+bones/3/rotation = Quaternion(-2.93653e-08, -2.72897e-08, -0.253155, 0.967426)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
-bones/5/rotation = Quaternion(-2.21372e-08, 2.75361e-08, 0.253155, 0.967426)
+bones/5/rotation = Quaternion(-2.93653e-08, 2.72897e-08, 0.253155, 0.967426)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.63993, 0.300816, 0.639929, -0.300816)
 bones/7/rotation = Quaternion(-0.257522, 1.80225e-07, 7.2783e-08, 0.966272)
@@ -92,11 +97,26 @@ bones/8/rotation = Quaternion(0.63993, -0.300816, -0.639929, -0.300816)
 bones/9/rotation = Quaternion(-0.257522, -1.80225e-07, -7.2783e-08, 0.966272)
 bones/9/scale = Vector3(1, 1, 1)
 
+[node name="GrabArea" type="Area3D" parent="man"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="man/GrabArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964206, 1.08101)
+shape = SubResource("BoxShape3D_qbkvd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="man/GrabArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7498, 1.97726)
+visible = false
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../man")
 tree_root = SubResource("AnimationNodeBlendTree_ckjy8")
 anim_player = NodePath("../man/AnimationPlayer")
 parameters/GrabBlend/blend_amount = 0.0
-parameters/TimeScale/scale = 0.5
+parameters/TimeScale/scale = 1.0
+
+[connection signal="body_entered" from="man/GrabArea" to="." method="_on_grab_area_body_entered"]
+[connection signal="body_exited" from="man/GrabArea" to="." method="_on_grab_area_body_exited"]
 
 [editable path="man"]
