@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://damdyvodpy576"]
+[gd_scene load_steps=17 format=3 uid="uid://damdyvodpy576"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06din"]
 [ext_resource type="PackedScene" uid="uid://dgkwsvc0ac1dj" path="res://Scenes/Player/Following Camera/following_camera_controller.tscn" id="2_5t5d2"]
+[ext_resource type="PackedScene" uid="uid://bro674k7xikw6" path="res://Scenes/Player/man.glb" id="3_v4l0p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5gi3j"]
 
@@ -10,6 +11,51 @@ albedo_color = Color(0.752804, 0.924169, 0.977967, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5g6jr"]
 material = SubResource("StandardMaterial3D_1cc6h")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kp441"]
+animation = &"Grab"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wg7ek"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:LowerArm.L", "Armature/Skeleton3D:LowerArm.R", "Armature/Skeleton3D:UpperArm.L"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_konnh"]
+animation = &"Idle??"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1w3kp"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_68x3k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1lf5"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xc7hi"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_orq5h"]
+states/Idle??/node = SubResource("AnimationNodeAnimation_konnh")
+states/Idle??/position = Vector2(414, 98)
+states/Walk/node = SubResource("AnimationNodeAnimation_1w3kp")
+states/Walk/position = Vector2(618, 98)
+transitions = ["Start", "Idle??", SubResource("AnimationNodeStateMachineTransition_68x3k"), "Idle??", "Walk", SubResource("AnimationNodeStateMachineTransition_q1lf5"), "Walk", "Idle??", SubResource("AnimationNodeStateMachineTransition_xc7hi")]
+graph_offset = Vector2(-89, -1)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m1pfg"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ckjy8"]
+graph_offset = Vector2(-407, 19)
+nodes/GrabAnimation/node = SubResource("AnimationNodeAnimation_kp441")
+nodes/GrabAnimation/position = Vector2(-200, 280)
+nodes/GrabBlend/node = SubResource("AnimationNodeBlend2_wg7ek")
+nodes/GrabBlend/position = Vector2(80, 120)
+nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_orq5h")
+nodes/MoveStateMachine/position = Vector2(-200, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_m1pfg")
+nodes/TimeScale/position = Vector2(300, 120)
+nodes/output/position = Vector2(480, 140)
+node_connections = [&"GrabBlend", 0, &"MoveStateMachine", &"GrabBlend", 1, &"GrabAnimation", &"TimeScale", 0, &"GrabBlend", &"output", 0, &"TimeScale"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_06din")
@@ -20,9 +66,37 @@ shape = SubResource("CapsuleShape3D_5gi3j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_5g6jr")
 
 [node name="FollowingCameraController" parent="." instance=ExtResource("2_5t5d2")]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 1.4, 0)
 min_limit_x = -0.8
 max_limit_x = 0.2
+
+[node name="man" parent="." instance=ExtResource("3_v4l0p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="man/Armature" index="0"]
+bones/1/rotation = Quaternion(0.321499, 1.1288e-07, 8.39421e-09, 0.94691)
+bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
+bones/3/rotation = Quaternion(-2.21372e-08, -2.75361e-08, -0.253155, 0.967426)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
+bones/5/rotation = Quaternion(-2.21372e-08, 2.75361e-08, 0.253155, 0.967426)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.63993, 0.300816, 0.639929, -0.300816)
+bones/7/rotation = Quaternion(-0.257522, 1.80225e-07, 7.2783e-08, 0.966272)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.63993, -0.300816, -0.639929, -0.300816)
+bones/9/rotation = Quaternion(-0.257522, -1.80225e-07, -7.2783e-08, 0.966272)
+bones/9/scale = Vector3(1, 1, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../man")
+tree_root = SubResource("AnimationNodeBlendTree_ckjy8")
+anim_player = NodePath("../man/AnimationPlayer")
+parameters/GrabBlend/blend_amount = 0.0
+parameters/TimeScale/scale = 0.5
+
+[editable path="man"]
