@@ -10,6 +10,7 @@ var is_running := false
 #settings
 #@export var toggle_sprint := false
 
+
 #jump variables from video https://www.youtube.com/watch?v=AoGOIiBo4Eg&ab_channel=ClearCode
 @export var jump_height := 2.25
 @export var jump_time_to_peak := 0.4
@@ -24,8 +25,12 @@ var is_running := false
 var can_grab := true
 var grabbable_obj : Node3D = null
 var grabbed_object : Node3D = null
-var am_holding := false
+var pullable_obj : Node3D = null
+var pulled_obj : Node3D = null
 
+var am_holding := false
+var am_pulling := false
+var am_interacting := false
 
 #functions
 func _ready() -> void:
@@ -39,6 +44,7 @@ func _physics_process(_delta) -> void:
 	#Interact check
 	interact()
 	_hold_obj()
+	_interacting()
 
 
 func interact() -> void:
@@ -58,7 +64,7 @@ func interact() -> void:
 func move_logic(delta) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated((-camera.global_rotation.y))
 	#current horizontal velocity
-	velocity = Vector3(movement_input.x,0,movement_input.y) * base_speed
+	velocity = Vector3(movement_input.x,0,movement_input.y) * base_speed * speed_modifier
 	var horizontal_v = Vector2(velocity.x, velocity.z)
 	var actual_speed = sprint_speed if Input.is_action_pressed("sprint") else base_speed
 	#sprint speed
@@ -87,25 +93,41 @@ func jump_logic(delta) -> void:
 		
 
 func _on_grab_area_body_entered(body: Node3D) -> void:
-	if (body.is_in_group("grabbable") && !am_holding):
+	if (body.is_in_group("grabbable") && !am_holding) or (body.is_in_group("pullable") && !am_holding):
 		grabbable_obj = body
+		pullable_obj = body
 		print('can be grabbed')
+	#if (body.is_in_group("pullable") && !am_holding):
+		#pullable_obj = body
+
 
 
 func _on_grab_area_body_exited(body: Node3D) -> void:
 	if body == grabbable_obj:
 		grabbable_obj = null
+	if body == pullable_obj:
+		pullable_obj = null
+
 
 func _grab(obj):
 	if obj != null:
-		grabbed_object = obj 
-		grabbed_object.global_position = $man/GrabArea/CSGBox3D.global_position
-		var col_shape = grabbed_object.get_node('CollisionShape3D')
-		col_shape.disabled = true
-		am_holding = true  
+		if obj.is_in_group('grabbable'):
+			grabbed_object = obj 
+			grabbed_object.global_position = $man/GrabArea/CSGBox3D.global_position
+			var col_shape = grabbed_object.get_node('CollisionShape3D')
+			col_shape.disabled = true
+			am_holding = true  
+		elif obj.is_in_group('pullable'):
+			pulled_obj = obj
+			
+			speed_modifier = 0
+			
+			#update rotation with mouse movement
+			
+			#print('pulling')
 
 
-func _hold_obj():
+func _hold_obj()  -> void:
 	
 	if grabbed_object != null and Input.is_action_pressed("interact") and am_holding:  # Replace "interact" with your actual input action
 		var shadow = grabbed_object.get_node('shadow')
@@ -122,3 +144,23 @@ func _hold_obj():
 	else:
 		am_holding = false
 	
+func _interacting()  -> void:
+	if pulled_obj != null and Input.is_action_pressed("interact") and !am_interacting:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		speed_modifier = 0
+		var gui_target = get_tree().get_nodes_in_group("control")
+		#print(gui_target)
+		if gui_target[0].name == 'Lever Controls':
+			gui_target[0].show()
+			#gui_target[0].grab_focus()
+			gui_target[0].MOUSE_FILTER_STOP
+	elif pulled_obj != null:
+		var gui_target = get_tree().get_nodes_in_group("control")
+		if gui_target[0].name == 'Lever Controls':
+			gui_target[0].hide()
+			#gui_target[0].grab_focus()
+			pulled_obj = null
+			gui_target[0].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+		speed_modifier = 1

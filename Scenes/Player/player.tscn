@@ -83,12 +83,12 @@ max_limit_x = 0.2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="man/Armature" index="0"]
-bones/1/rotation = Quaternion(0.321499, 1.1288e-07, 2.19955e-08, 0.94691)
+bones/1/rotation = Quaternion(0.0328778, 1.19145e-07, 7.42792e-08, 0.999459)
 bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
-bones/3/rotation = Quaternion(-2.93653e-08, -2.72897e-08, -0.253155, 0.967426)
+bones/3/rotation = Quaternion(-4.46428e-08, -2.692e-08, -0.049874, 0.998756)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
-bones/5/rotation = Quaternion(-2.93653e-08, 2.72897e-08, 0.253155, 0.967426)
+bones/5/rotation = Quaternion(-4.46428e-08, 2.692e-08, 0.049874, 0.998756)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.63993, 0.300816, 0.639929, -0.300816)
 bones/7/rotation = Quaternion(-0.257522, 1.80225e-07, 7.2783e-08, 0.966272)

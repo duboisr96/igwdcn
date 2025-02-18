@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=11 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_u28yv"]
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
+[ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
+[ext_resource type="PackedScene" uid="uid://bxgwyoa86dshf" path="res://Scenes/gui/lever_controls.tscn" id="7_w5vxh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,6 +52,14 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.737756, 0.254696, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 4.18358)
+
+[node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.21926, 0, 0.869612)
+
+[node name="GUI canvas" type="CanvasLayer" parent="."]
+
+[node name="Lever Controls" parent="GUI canvas" groups=["control"] instance=ExtResource("7_w5vxh")]
+visible = false
 
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
