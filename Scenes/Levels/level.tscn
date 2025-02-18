@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=9 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_u28yv"]
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
+[ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,10 +33,6 @@ shadow_enabled = true
 [node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
 default_color_to_create = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.537803, -0.107983, -0.836127, -0.00342958, 0.991475, -0.130252, 0.843064, 0.0729175, 0.532848, -1.97198, 0.831159, 2.09831)
-fov = 77.0723
-
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22015, 0.448438, 0.12847)
 
@@ -47,3 +44,6 @@ size = Vector3(17.823, 0.2, 20.1609)
 
 [node name="Belt" parent="." instance=ExtResource("3_slbud")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.737756, 0.254696, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_wt80w")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 4.18358)
