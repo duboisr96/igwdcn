@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 grabbable=""
 levels=""
+pullable=""
+control=""
 
 [input]
 
