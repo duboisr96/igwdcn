@@ -3,6 +3,7 @@ extends CharacterBody3D
 #variables
 @export var base_speed := 4.0
 @export var sprint_speed := 8.0
+var speed_modifier := 1.0
 
 var movement_input := Vector2.ZERO
 var is_running := false
@@ -17,44 +18,57 @@ var is_running := false
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1
 
-
+@onready var move_state_machine = $AnimationTree.get('parameters/MoveStateMachine/playback')
 #nodes
 @onready var camera = $FollowingCameraController/Camera3D
 
 #functions
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _physics_process(_delta) -> void:
 	#Movement
 	move_logic(_delta)
 	jump_logic(_delta)
 	move_and_slide()
 	#Interact check
-	if (Input.is_action_just_pressed("interact")):
-		interact()
+	interact()
+	
 
 
 func interact() -> void:
-	print("interact")
+	var tween = create_tween()
+	if Input.is_action_just_pressed("unlock mouse"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if (Input.is_action_pressed("interact")):
+		print("interact")
+		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .25 )
+	else:
+		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 0, .25 )
 	
 #handles horizontal movement
 func move_logic(delta) -> void:
-	movement_input = Input.get_vector("left","right","up", "down").rotated(-camera.global_rotation.y)
+	movement_input = Input.get_vector("left", "right", "up", "down").rotated((-camera.global_rotation.y))
 	#current horizontal velocity
+	velocity = Vector3(movement_input.x,0,movement_input.y) * base_speed
 	var horizontal_v = Vector2(velocity.x, velocity.z)
-	
+	var actual_speed = sprint_speed if Input.is_action_pressed("sprint") else base_speed
 	#sprint speed
-	is_running = Input.is_action_pressed("sprint")
-	var speed = sprint_speed if is_running else base_speed
+	var is_running: bool = Input.is_action_pressed("sprint")
 
 	if (movement_input != Vector2.ZERO):
 		#Acceleration with input
-		horizontal_v += movement_input * speed * delta
-		horizontal_v = horizontal_v.limit_length(speed)
+		horizontal_v += movement_input * actual_speed * delta
+		horizontal_v = horizontal_v.limit_length(actual_speed)
+		var target_angle = -movement_input.angle() + PI/2
+		$man.rotation.y = rotate_toward($man.rotation.y, target_angle, delta*5) 
+		move_state_machine.travel('Walk')
 	else:
 		#Deceleration without input kind of slides right now
 		horizontal_v = horizontal_v.move_toward(Vector2.ZERO, base_speed * 4.0 * delta)
-	velocity.x = horizontal_v.x
-	velocity.z = horizontal_v.y
-	
+		velocity.x = horizontal_v.x
+		velocity.z = horizontal_v.y
+		move_state_machine.travel('Idle??')
 func jump_logic(delta) -> void:
 	#handles vertical movement
 	if is_on_floor():
