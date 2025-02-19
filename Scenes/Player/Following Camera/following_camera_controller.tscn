@@ -6,7 +6,7 @@
 
 [node name="FollowingCameraController" type="SpringArm3D"]
 shape = SubResource("SphereShape3D_pqc14")
-spring_length = 6.5
+spring_length = 4.0
 script = ExtResource("1_1ritm")
 
 [node name="Camera3D" type="Camera3D" parent="."]

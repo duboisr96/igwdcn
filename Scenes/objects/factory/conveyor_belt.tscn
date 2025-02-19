@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://dw3qlg3yxm2r3"]
+
+[ext_resource type="PackedScene" uid="uid://dbotf1xs1k58u" path="res://Scenes/objects/factory/conveyor_belt.glb" id="1_nsu8j"]
+[ext_resource type="Script" path="res://Scenes/objects/factory/conveyor_belt.gd" id="2_rf51n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0bu70"]
+animation = &"CylinderAction_002"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_irijp"]
+animation = &"Cylinder_001Action_002"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0pni5"]
+animation = &"Cylinder_002Action_002"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l15tf"]
+animation = &"PlaneAction_002"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_kj472"]
+filter_enabled = true
+filters = ["Cylinder_001"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_g76rq"]
+filter_enabled = true
+filters = ["Cylinder_002"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6t0tj"]
+filter_enabled = true
+filters = ["Cylinder"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f8eac"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7psjr"]
+graph_offset = Vector2(-947.452, -0.629547)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_l15tf")
+nodes/Animation/position = Vector2(-1040, 180)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_0bu70")
+"nodes/Animation 2/position" = Vector2(-980, 360)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_irijp")
+"nodes/Animation 3/position" = Vector2(-620, 360)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0pni5")
+"nodes/Animation 4/position" = Vector2(-320, 360)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_6t0tj")
+nodes/Blend2/position = Vector2(-680, 120)
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_kj472")
+"nodes/Blend2 2/position" = Vector2(-380, 100)
+"nodes/Blend2 3/node" = SubResource("AnimationNodeBlend2_g76rq")
+"nodes/Blend2 3/position" = Vector2(-80, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_f8eac")
+nodes/TimeScale/position = Vector2(100, 160)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"Blend2 2", 0, &"Blend2", &"Blend2 2", 1, &"Animation 3", &"Blend2 3", 0, &"Blend2 2", &"Blend2 3", 1, &"Animation 4", &"TimeScale", 0, &"Blend2 3", &"output", 0, &"TimeScale"]
+
+[node name="conveyor_belt" instance=ExtResource("1_nsu8j")]
+script = ExtResource("2_rf51n")
+
+[node name="Cylinder" parent="." index="0"]
+transform = Transform3D(-2.77852e-10, 0.0359897, 4.53615e-10, -0.0115734, -1.19618e-09, 0.0098858, 0.0098858, -3.88847e-10, 0.0115734, 0, 0, 0)
+
+[node name="Cylinder_001" parent="." index="1"]
+transform = Transform3D(-5.03048e-10, 0.0359897, -1.97914e-09, 0.0131072, -1.35471e-09, -0.00773777, -0.00773777, -4.63455e-09, -0.0131072, 0, 0, -0.0303808)
+
+[node name="Cylinder_002" parent="." index="2"]
+transform = Transform3D(-5.60665e-10, 0.0359897, -5.17272e-10, 0.0059169, -6.11547e-10, -0.0140237, -0.0140237, -1.69689e-09, -0.0059169, 0, 0, 0.0304634)
+
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = "Cylinder_002Action_002"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
+tree_root = SubResource("AnimationNodeBlendTree_7psjr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 1.0
+"parameters/Blend2 2/blend_amount" = 1.0
+"parameters/Blend2 3/blend_amount" = 1.0
+parameters/TimeScale/scale = 0.5

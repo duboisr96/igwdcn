@@ -69,7 +69,8 @@ func _check_speed(delta) -> void:
 	global_shape_velocity = parent[0].production_speed
 
 	motion = create_velocity * delta * global_shape_velocity * int(on_belt)
-	get_tree() ##idk what its getting from tree yet but some global speed value? from uhhh.... the production machine?
+	
+	#get_tree() ##idk what its getting from tree yet but some global speed value? from uhhh.... the production machine?
 	#UPDATE SPEED, VELOCITY IS THE SAME, NEED TO MULITPLY VELOCITY BY SPEED
 
 
@@ -79,26 +80,30 @@ func _on_body_entered(body: Node) -> void:
 	pass # Replace with function body.
 
 func _check_overlapping_areas() -> void:
+	
 	for area in $Area3D.get_overlapping_areas():
 		if area.name == "Bin":
+			print(area.name)
+			#print(area.name)
 			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
 			queue_free()
-			break
-		elif area.name == "Belt":  # Check if the area's name is "belt"
-			on_belt = true
-			#for body in $".".get_colliding_bodies():
-				#print('body')
-				#if body.name == 'Belt':
-					#$shadow.show()
-					#break
-			#print("On belt!")
-			break  # Exit loop early since we found a belt
-		else:
-			#print('not on belt or in bin! DANGER')
-			on_belt = false
-	if $Area3D.get_overlapping_areas().is_empty():
-		#print('not on belt or in bin! DANGER')
-		on_belt = false
+			#break
+		#elif area.name == "Belt":  # Check if the area's name is "belt"
+			#on_belt = true
+			##for body in $".".get_colliding_bodies():
+				##print('body')
+				##if body.name == 'Belt':
+					##$shadow.show()
+					##break
+			##print("On belt!")
+			#break  # Exit loop early since we found a belt
+		#else:
+			##print('not on belt or in bin! DANGER')
+			#on_belt = false
+	#if $Area3D.get_overlapping_areas().is_empty():
+		##print('not on belt or in bin! DANGER')
+		#on_belt = false
+	pass
 
 func _turn_to() -> void:
 	var camera = get_tree().get_current_scene().find_child("Camera3D", true, false)
@@ -112,6 +117,12 @@ func _bob() -> void:
 func _show_shadow() -> void:
 	if $Area3D/CollisionShape3D/RayCast3D.is_colliding():
 		if ($Area3D/CollisionShape3D/RayCast3D.get_collider() != null):
+			var area = $Area3D/CollisionShape3D/RayCast3D.get_collider()
 			$shadow.show()
+			#print(area.name)
+			if area.name.begins_with('Belt'):
+				on_belt = true
 		else:
 			$shadow.hide()
+	else:
+		on_belt = false

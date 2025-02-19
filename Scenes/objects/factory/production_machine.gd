@@ -20,7 +20,8 @@ var rand = randi_range(1.0,100.0)
 @export var error_top := 99.0
 var error_amount := 0.0
 var temp_timer
-
+var counter = 0
+var counter_limit = 3 # per a standard 3 seconds it takes 432 to make on ryan pc
 
 var error_log := []
 #var make_shape
@@ -34,24 +35,31 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#print($Timer.time_left)
 	var parent = get_tree().get_nodes_in_group("levels")
-	print($Timer.wait_time,'   ' , $Timer.time_left)
-	if parent and parent[0].update_timer:
-		var old_speed = global_speed_multiplier
-		var new_speed = parent[0].production_speed
+	#print($Timer.time_left)
+	var how_fast = parent[0].production_speed
+	counter += how_fast*delta
+	#print($Timer.wait_time,'   ' , $Timer.time_left)
 	
-		if old_speed != new_speed:
-			
-			global_speed_multiplier = new_speed
-			var elapsed_time = $Timer.wait_time - $Timer.time_left
-			var progress_ratio = elapsed_time / $Timer.wait_time
-			var new_wait_time = production_default / global_speed_multiplier
-			var new_time_left = new_wait_time * (1.0 - progress_ratio)
-			$Timer.stop()
-			$Timer.wait_time = new_time_left
-			print('new_time_left: ', new_time_left, ' new_wait_time: ', new_wait_time, ' progress_ratio: ', progress_ratio, ' elapsed_time:', elapsed_time)
-			$Timer.start()
+	if counter >= counter_limit:
+		_on_timer_timeout()
+	
+	
+	#if parent and parent[0].update_timer:
+		#var old_speed = global_speed_multiplier
+		#var new_speed = parent[0].production_speed
+	
+		#if old_speed != new_speed:
+			#
+			#global_speed_multiplier = new_speed
+			#var elapsed_time = $Timer.wait_time - $Timer.time_left
+			#var progress_ratio = elapsed_time / $Timer.wait_time
+			#var new_wait_time = production_default / global_speed_multiplier
+			#var new_time_left = new_wait_time * (1.0 - progress_ratio)
+			#$Timer.stop()
+			#$Timer.wait_time = new_time_left
+			##print('new_time_left: ', new_time_left, ' new_wait_time: ', new_wait_time, ' progress_ratio: ', progress_ratio, ' elapsed_time:', elapsed_time)
+			#$Timer.start()
 	#if parent != null:
 		#if parent[0].update_timer:
 			#
@@ -75,12 +83,14 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	#print('timer timeout')
+	print(counter)
+	counter = 0
 	var parent = get_tree().get_nodes_in_group("levels")
 	if parent[0].production_speed != global_speed_multiplier:
 		$Timer.stop()
 		global_speed_multiplier = parent[0].production_speed
 		update_timer()
-		
+
 	rand = randi_range(1.0,100.0)
 	if rand <= error_top :
 		#print('creating ', color_to_create, ' ', shape_to_create,' from machine')

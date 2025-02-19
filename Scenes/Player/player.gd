@@ -31,6 +31,7 @@ var pulled_obj : Node3D = null
 var am_holding := false
 var am_pulling := false
 var am_interacting := false
+var can_rotate := true
 
 #functions
 func _ready() -> void:
@@ -58,6 +59,8 @@ func interact() -> void:
 		_grab(grabbable_obj)
 		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .1 )
 	else:
+		$FollowingCameraController.can_adjust = true
+		can_rotate = true
 		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 0, .1 )
 	
 #handles horizontal movement
@@ -74,8 +77,9 @@ func move_logic(delta) -> void:
 		#Acceleration with input
 		horizontal_v += movement_input * actual_speed * delta
 		horizontal_v = horizontal_v.limit_length(actual_speed)
-		var target_angle = -movement_input.angle() + PI/2
-		$man.rotation.y = rotate_toward($man.rotation.y, target_angle, delta*5) 
+		if can_rotate:
+			var target_angle = -movement_input.angle() + PI/2
+			$man.rotation.y = rotate_toward($man.rotation.y, target_angle, delta*5) 
 		move_state_machine.travel('Walk')
 	else:
 		#Deceleration without input kind of slides right now
@@ -118,8 +122,9 @@ func _grab(obj):
 			col_shape.disabled = true
 			am_holding = true  
 		elif obj.is_in_group('pullable'):
+			$FollowingCameraController.can_adjust = false
 			pulled_obj = obj
-			
+			can_rotate = false
 			speed_modifier = 0
 			
 			#update rotation with mouse movement
