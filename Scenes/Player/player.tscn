@@ -13,7 +13,7 @@ albedo_color = Color(0.752804, 0.924169, 0.977967, 1)
 material = SubResource("StandardMaterial3D_1cc6h")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbkvd"]
-size = Vector3(1, 1, 2)
+size = Vector3(1, 2.03711, 2)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kp441"]
 animation = &"Grab"
@@ -62,7 +62,7 @@ node_connections = [&"GrabBlend", 0, &"MoveStateMachine", &"GrabBlend", 1, &"Gra
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 8
-collision_mask = 29
+collision_mask = 21
 script = ExtResource("1_06din")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -83,12 +83,12 @@ max_limit_x = 0.2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="man/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0328778, 1.19145e-07, 7.42792e-08, 0.999459)
+bones/1/rotation = Quaternion(0.299622, 1.13733e-07, 4.24304e-08, 0.954058)
 bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
-bones/3/rotation = Quaternion(-4.46428e-08, -2.692e-08, -0.049874, 0.998756)
+bones/3/rotation = Quaternion(-3.92265e-08, -2.70093e-08, -0.23743, 0.971405)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
-bones/5/rotation = Quaternion(-4.46428e-08, 2.692e-08, 0.049874, 0.998756)
+bones/5/rotation = Quaternion(-3.92265e-08, 2.70093e-08, 0.237431, 0.971404)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.63993, 0.300816, 0.639929, -0.300816)
 bones/7/rotation = Quaternion(-0.257522, 1.80225e-07, 7.2783e-08, 0.966272)
@@ -99,10 +99,11 @@ bones/9/scale = Vector3(1, 1, 1)
 
 [node name="GrabArea" type="Area3D" parent="man"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-collision_mask = 3
+collision_layer = 0
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="man/GrabArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964206, 1.08101)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48276, 1.08101)
 shape = SubResource("BoxShape3D_qbkvd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="man/GrabArea"]

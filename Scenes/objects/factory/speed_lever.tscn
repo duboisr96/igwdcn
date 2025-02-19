@@ -1,19 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://5j3763avycsn"]
+[gd_scene load_steps=5 format=3 uid="uid://5j3763avycsn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bplgu"]
+albedo_color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oaln5"]
+albedo_color = Color(0.69246, 1.841e-06, 7.70092e-07, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h5t12"]
 size = Vector3(1.25, 3, 1.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ko0y"]
+albedo_color = Color(0, 0, 0, 1)
+
 [node name="SpeedLever" type="StaticBody3D" groups=["pullable"]]
 transform = Transform3D(0.12941, -0.482963, 0, 0.482963, 0.12941, 0, 0, 0, 0.5, 0, 0, 0)
+collision_layer = 8
+collision_mask = 13
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.749807, 0)
 radius = 0.05
 height = 1.5
+material = SubResource("StandardMaterial3D_bplgu")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66969, 0)
 radius = 0.2
+material = SubResource("StandardMaterial3D_oaln5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -24,3 +37,4 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 radius = 0.4
 height = 0.12484
 sides = 40
+material = SubResource("StandardMaterial3D_0ko0y")

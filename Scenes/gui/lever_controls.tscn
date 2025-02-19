@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/gui/lever_controls.gd" id="1_thw10"]
 
 [node name="Lever Controls" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +21,7 @@ offset_bottom = 227.0
 text = "try not to cry"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.297
@@ -38,6 +40,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="VSlider" type="VSlider" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 344.0
 offset_top = 162.0

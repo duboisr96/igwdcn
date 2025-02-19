@@ -19,15 +19,16 @@ func _process(delta: float) -> void:
 	#tp_mouse()
 	var current_mouse_position = get_global_mouse_position()
 	var mouse_movement = current_mouse_position.y - previous_mouse_position.y
-	print(vslider.value)
-	if mouse_movement > 1:
-		vslider.value -= 5
-		print('up!')
-	elif mouse_movement < -1:
-		print('down!')
-		vslider.value += 5
-	vslider.value = clamp(vslider.value, vslider.min_value, vslider.max_value)
-	previous_mouse_position = current_mouse_position
+	#print(vslider.value)
+	if visible:
+		if mouse_movement >0:
+			vslider.value += 5
+			#print('up!')
+		elif mouse_movement < 0:
+			#print('down!')
+			vslider.value -= 5
+		vslider.value = clamp(vslider.value, vslider.min_value, vslider.max_value)
+		previous_mouse_position = current_mouse_position
 
 	#if Input.is_action_pressed('interact') && visible:
 		#update_slider_value()
