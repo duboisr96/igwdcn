@@ -19,8 +19,7 @@ const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
 var rand = randi_range(1.0,100.0)
 @export var error_top := 99.0
 var error_amount := 0.0
-
-
+var temp_timer
 
 
 var error_log := []
@@ -28,20 +27,54 @@ var error_log := []
 #var make_color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	$Timer.wait_time = production_default
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print($Timer.time_left)
+	var parent = get_tree().get_nodes_in_group("levels")
+	print($Timer.wait_time,'   ' , $Timer.time_left)
+	if parent and parent[0].update_timer:
+		var old_speed = global_speed_multiplier
+		var new_speed = parent[0].production_speed
 	
+		if old_speed != new_speed:
+			
+			global_speed_multiplier = new_speed
+			var elapsed_time = $Timer.wait_time - $Timer.time_left
+			var progress_ratio = elapsed_time / $Timer.wait_time
+			var new_wait_time = production_default / global_speed_multiplier
+			var new_time_left = new_wait_time * (1.0 - progress_ratio)
+			$Timer.stop()
+			$Timer.wait_time = new_time_left
+			print('new_time_left: ', new_time_left, ' new_wait_time: ', new_wait_time, ' progress_ratio: ', progress_ratio, ' elapsed_time:', elapsed_time)
+			$Timer.start()
+	#if parent != null:
+		#if parent[0].update_timer:
+			#
+			#temp_timer = $Timer.time_left
+			#$Timer.stop()
+			##print('UPDATING prod default: ', production_default, ' global speed is: ', global_speed_multiplier, ' temp timer is: ', temp_timer )
+			##print(production_default / global_speed_multiplier , '  ', temp_timer * global_speed_multiplier)
+			#print('temp timer:',temp_timer, '     prod speed:', parent[0].production_speed)
+			#if parent[0].production_speed < global_speed_multiplier:
+				#
+				#$Timer.wait_time =  temp_timer / parent[0].production_speed
+			#elif parent[0].production_speed > global_speed_multiplier:
+				#$Timer.wait_time =  temp_timer * parent[0].production_speed
+#
+			#$Timer.start()
+	#print($Timer.time_left)
 	
 	
 	pass
 
 
 func _on_timer_timeout() -> void:
-	print('timer timeout')
+	#print('timer timeout')
 	var parent = get_tree().get_nodes_in_group("levels")
 	if parent[0].production_speed != global_speed_multiplier:
 		$Timer.stop()
@@ -50,14 +83,14 @@ func _on_timer_timeout() -> void:
 		
 	rand = randi_range(1.0,100.0)
 	if rand <= error_top :
-		print('creating ', color_to_create, ' ', shape_to_create,' from machine')
+		#print('creating ', color_to_create, ' ', shape_to_create,' from machine')
 		_output_shape(default_shape_to_create, default_color_to_create)
 		#shape_to_create = 'square'
 		#color_to_create = 'DEEP_SKY_BLUE'
 	else:
 		_handle_error(rand)
 	
-	print($Timer.wait_time)
+	#print($Timer.wait_time)
 
 func _handle_error(error_val) -> void:
 	var rando_spread := randi_range(1,10)
@@ -75,7 +108,7 @@ func _handle_error(error_val) -> void:
 				error_color = randi_range(0,2)
 			error_log.append(error_shape)
 			error_log.append(error_color)
-			print(error_log)
+			#print(error_log)
 			error_amount += 1
 			_output_shape(error_shape, error_color)
 			#color and shape error

@@ -96,7 +96,7 @@ func _on_grab_area_body_entered(body: Node3D) -> void:
 	if (body.is_in_group("grabbable") && !am_holding) or (body.is_in_group("pullable") && !am_holding):
 		grabbable_obj = body
 		pullable_obj = body
-		print('can be grabbed')
+		#print('can be grabbed')
 	#if (body.is_in_group("pullable") && !am_holding):
 		#pullable_obj = body
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=12 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_u28yv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
 [ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
 [ext_resource type="PackedScene" uid="uid://bxgwyoa86dshf" path="res://Scenes/gui/lever_controls.tscn" id="7_w5vxh"]
+[ext_resource type="PackedScene" uid="uid://cqy7a4ltv7ood" path="res://Scenes/gui/player_gui.tscn" id="8_756vi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,6 +24,8 @@ glow_enabled = true
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_u28yv")
+angle_min_rads = 0.26
+angle_max_rads = 2.9
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
@@ -33,6 +36,7 @@ light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
 [node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493694, 0)
 default_shape_to_create = 2
 default_color_to_create = 1
 
@@ -54,12 +58,16 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.737756, 0.254696, 0)
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 4.18358)
 
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.21926, 0, 0.869612)
+transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.000872556, 0.00383957, -0.000872659, -0.249998, -1.09266e-08, -0.748823, 0.843469, 1.01241)
 
 [node name="GUI canvas" type="CanvasLayer" parent="."]
 
 [node name="Lever Controls" parent="GUI canvas" groups=["control"] instance=ExtResource("7_w5vxh")]
-visible = false
+
+[node name="PlayerGUI" parent="GUI canvas" instance=ExtResource("8_756vi")]
+
+[node name="StageTime" type="Timer" parent="."]
 
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
+[connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]

@@ -81,7 +81,7 @@ func _on_body_entered(body: Node) -> void:
 func _check_overlapping_areas() -> void:
 	for area in $Area3D.get_overlapping_areas():
 		if area.name == "Bin":
-			print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
+			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
 			queue_free()
 			break
 		elif area.name == "Belt":  # Check if the area's name is "belt"
