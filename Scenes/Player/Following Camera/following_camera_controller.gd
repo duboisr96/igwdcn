@@ -7,6 +7,8 @@ extends Node3D
 #limit
 @export var min_limit_x: float
 @export var max_limit_x: float
+
+var can_adjust = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -24,6 +26,6 @@ func rotate_from_vector(v: Vector2):
 
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && can_adjust:
 		#rotating around y axis using horizontal mouse movenet
 		rotate_from_vector(event.relative * sensitivity)

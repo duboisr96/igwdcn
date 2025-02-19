@@ -36,12 +36,12 @@ light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
 [node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493694, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.47409, 0.493694, 0)
 default_shape_to_create = 2
 default_color_to_create = 1
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22015, 0.448438, 0.12847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.782, 0, 0.128)
 shape = "triangle"
 color = "RED"
 
@@ -52,13 +52,13 @@ use_collision = true
 size = Vector3(17.823, 0.2, 20.1609)
 
 [node name="Belt" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.737756, 0.254696, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0087, 0.254696, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 4.18358)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.00536, -0.0231023, 2.92093)
 
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
-transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.000872556, 0.00383957, -0.000872659, -0.249998, -1.09266e-08, -0.748823, 0.843469, 1.01241)
+transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.000872556, 0.00383957, -0.000872659, -0.249998, -1.09266e-08, -4.32291, 0.843469, 1.01241)
 
 [node name="GUI canvas" type="CanvasLayer" parent="."]
 
@@ -68,6 +68,27 @@ transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.0008725
 
 [node name="StageTime" type="Timer" parent="."]
 
+[node name="Belt2" parent="." instance=ExtResource("3_slbud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842766, 0.085866, 0)
+
+[node name="ProductionMachine2" parent="." instance=ExtResource("1_ks7je")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.20137, 0.48533, 5.23552)
+default_shape_to_create = 1
+default_velocity = Vector3(-0.5, 0, 0)
+
+[node name="Belt3" parent="." instance=ExtResource("3_slbud")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.30897, 0.335677, 5.17268)
+
+[node name="Belt4" parent="." instance=ExtResource("3_slbud")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.230114, 0.101998, 5.17268)
+
+[node name="Bin2" parent="." instance=ExtResource("2_fj8l3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.38485, 0, 5.12748)
+shape = "square"
+color = "SKY_BLUE"
+
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
 [connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]
+[connection signal="minus_one" from="Bin2" to="." method="_on_bin_minus_one"]
+[connection signal="plus_one" from="Bin2" to="." method="_on_bin_plus_one"]

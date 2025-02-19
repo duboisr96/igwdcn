@@ -3,7 +3,7 @@ extends Node3D
 
 var root = get_tree()
 
-@export var stage_time := 300
+@export var stage_time := 100
 @export var production_speed := 1.0
 @export var production_min = 1
 @export var production_max = 4

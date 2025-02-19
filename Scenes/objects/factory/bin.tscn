@@ -5,6 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
 
 [node name="Bin" type="Area3D"]
+collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_pyusl")
 
@@ -13,5 +14,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_5elh5")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(1, 0.673706, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
