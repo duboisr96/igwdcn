@@ -38,7 +38,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	_show_time()
 	_rotate_lever()
 	_keep_score()
@@ -121,3 +120,16 @@ func _on_pinpad_code_entered(code: Variant) -> void:
 func _on_pinpad_2_code_entered(code: Variant) -> void:
 	$ProductionMachine2.check_error(code)
 	print('pinpad 2 code ', code)
+
+
+func _on_production_machine_2_error_occured() -> void:
+	print('errrors')
+	if production_speed < production_max:
+		$"GUI canvas/Lever Controls".vslider.value += 1
+		print ($"GUI canvas/Lever Controls".vslider.value)
+		print('prod speed ' , production_speed)
+
+
+func _on_production_machine_error_occured() -> void:
+	if production_speed < production_max:
+		production_speed += .2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3qifyfd544h"]
+[gd_scene load_steps=6 format=3 uid="uid://dp3qifyfd544h"]
 
 [ext_resource type="Script" path="res://Scenes/objects/factory/production_machine.gd" id="1_0id2c"]
 [ext_resource type="PackedScene" uid="uid://cw44xutd13o53" path="res://Scenes/objects/shapes/shape_base.tscn" id="2_tiavw"]
 [ext_resource type="PackedScene" uid="uid://cn38qpit1o2wo" path="res://Scenes/objects/factory/production_machine.glb" id="3_0cg3m"]
+[ext_resource type="AudioStream" uid="uid://b3s4oap050fjr" path="res://Assets/error_sound.wav" id="4_27klj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_deupx"]
 size = Vector3(2.35254, 2.12262, 2.10745)
@@ -28,3 +29,7 @@ wait_time = 3.0
 
 [node name="production_machine" parent="." instance=ExtResource("3_0cg3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.451685, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_27klj")
+pitch_scale = 1.2

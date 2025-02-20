@@ -7,7 +7,7 @@ const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
 @export var shape_scene: PackedScene
 @export var default_shape_to_create : int
 @export var default_color_to_create : int
-
+signal error_occured
 @onready var shape_to_create = default_shape_array[default_shape_to_create]
 @onready var color_to_create = default_color_array[default_color_to_create]
 
@@ -16,6 +16,8 @@ const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
 @export var production_default := 3.0
 @export var global_speed_multiplier := 1.0
 @export var error_incriment := .5
+@export var error_infection := 2.0
+@export var speed_infection := 0.2
 var rand = randi_range(1.0,100.0)
 @export var error_top := 99.0
 var error_amount := 0.0
@@ -28,13 +30,15 @@ var error_log := []
 #var make_color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(error_log == null)
+	
 	$Timer.wait_time = production_default
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(global_speed_multiplier)
+	
 	error_top = error_top - delta*error_incriment*global_speed_multiplier
 	var parent = get_tree().get_nodes_in_group("levels")
 	#print($Timer.time_left)
@@ -103,6 +107,12 @@ func _on_timer_timeout() -> void:
 	#print($Timer.wait_time)
 
 func _handle_error(error_val) -> void:
+	#print('error')
+	error_top -= error_infection
+	error_occured.emit()
+	$AudioStreamPlayer3D.play()
+	#global_speed_multiplier += speed_infection
+	print('global speed ', global_speed_multiplier)
 	var rando_spread := randi_range(1,10)
 	if error_amount == 1:
 		_output_shape(error_log[0], error_log[1])
@@ -149,7 +159,7 @@ func _handle_error(error_val) -> void:
 		pass
 
 func _output_shape(shape_num, color_num) -> void:
-	print(error_top)
+	#print(error_top)
 
 	var new_shape = shape_scene.instantiate()
 	new_shape.create_shape = default_shape_array[shape_num] #shape of product to be produced
