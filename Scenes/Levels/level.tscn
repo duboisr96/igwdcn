@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=15 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_u28yv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cqy7a4ltv7ood" path="res://Scenes/gui/player_gui.tscn" id="8_756vi"]
 [ext_resource type="PackedScene" uid="uid://ch6ciytfbiypn" path="res://Scenes/gui/pinpad.tscn" id="9_wvw48"]
 [ext_resource type="PackedScene" uid="uid://bj4rgdb26x477" path="res://Scenes/objects/factory/wall_pinpad.tscn" id="10_di831"]
+[ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="11_gkygv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,6 +61,12 @@ belt_direction = Vector3(1, 0, 0)
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00536, -0.0231023, 2.92093)
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.01072, 0.0462046, -5.84186)
+stream = ExtResource("11_gkygv")
+unit_size = 100.0
+autoplay = true
+
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
 transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.000872556, 0.00383957, -0.000872659, -0.249998, -1.09266e-08, -4.32291, 0.843469, 1.01241)
 
@@ -69,7 +76,10 @@ transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.0008725
 
 [node name="PlayerGUI" parent="GUI canvas" instance=ExtResource("8_756vi")]
 
-[node name="pinpad" parent="GUI canvas" instance=ExtResource("9_wvw48")]
+[node name="pinpad1" parent="GUI canvas" instance=ExtResource("9_wvw48")]
+visible = false
+
+[node name="pinpad2" parent="GUI canvas" instance=ExtResource("9_wvw48")]
 visible = false
 
 [node name="StageTime" type="Timer" parent="."]
@@ -96,11 +106,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03629, 0.0938004, 5.26556)
 shape = "square"
 color = "SKY_BLUE"
 
-[node name="wall_pinpad" parent="." instance=ExtResource("10_di831")]
+[node name="wall_pinpad1" parent="." instance=ExtResource("10_di831")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -3.17966, 0.872066, 1.04959)
+
+[node name="wall_pinpad2" parent="." instance=ExtResource("10_di831")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 5.99628, 0.813962, 4.35218)
 
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
+[connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
+[connection signal="code_entered" from="GUI canvas/pinpad2" to="." method="_on_pinpad_2_code_entered"]
 [connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]
 [connection signal="minus_one" from="Bin2" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin2" to="." method="_on_bin_plus_one"]

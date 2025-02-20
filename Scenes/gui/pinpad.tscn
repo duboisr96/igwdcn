@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://ch6ciytfbiypn"]
+[gd_scene load_steps=9 format=3 uid="uid://ch6ciytfbiypn"]
+
+[ext_resource type="Script" path="res://Scenes/gui/pinpad.gd" id="1_pgvvc"]
+[ext_resource type="Texture2D" uid="uid://bhw06twyahbjq" path="res://Assets/REPLACEREPLACE.PNG" id="2_a3e1x"]
+[ext_resource type="Texture2D" uid="uid://blqjiwe1v66mc" path="res://Scenes/objects/shapes/circle.png" id="2_nrle8"]
+[ext_resource type="Texture2D" uid="uid://bhpgret5qtb2c" path="res://Scenes/objects/shapes/square.png" id="3_cnolb"]
+[ext_resource type="Texture2D" uid="uid://dod7x5rx2ayej" path="res://Scenes/objects/shapes/triangle.png" id="4_x6oii"]
+[ext_resource type="Texture2D" uid="uid://byenk6t4tpvw2" path="res://icon.svg" id="5_x5lqn"]
+[ext_resource type="Texture2D" uid="uid://cg5ciqvo8jf3l" path="res://Assets/Mouse-cursor-hand-pointer.svg.png" id="6_6b1q5"]
+[ext_resource type="AudioStream" uid="uid://cwpfpslldlqv5" path="res://Assets/Click 1.wav" id="8_187a6"]
 
 [node name="pinpad" type="Control" groups=["control"]]
 layout_mode = 3
@@ -7,15 +16,266 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pgvvc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.041
+anchor_top = -0.051
+anchor_right = 1.055
+anchor_bottom = 1.102
+offset_left = 0.232002
+offset_top = 0.0480003
+offset_right = -0.360107
+offset_bottom = -0.0960083
+texture = ExtResource("2_a3e1x")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.093
+anchor_top = 0.096
+anchor_right = 0.911
+anchor_bottom = 0.827
+offset_left = -0.136002
+offset_top = -0.208
+offset_right = -0.472046
+offset_bottom = 0.104004
+color = Color(0.0313726, 0.0156863, 0.847059, 1)
+
+[node name="Circle_Button" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.138
+anchor_top = 0.134
+anchor_right = 0.225
+anchor_bottom = 0.289
+offset_left = 0.0239868
+offset_top = 0.167999
+offset_right = 99.8
+offset_bottom = 99.728
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nrle8")
+
+[node name="Square_Button" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.477
+anchor_top = 0.133
+anchor_right = 0.563
+anchor_bottom = 0.287
+offset_left = -0.504028
+offset_top = -0.183998
+offset_right = 100.424
+offset_bottom = 100.024
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cnolb")
+
+[node name="Triangle_Button" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.798
+anchor_top = 0.116
+anchor_right = 0.885
+anchor_bottom = 0.27
+offset_left = -0.296021
+offset_top = -0.167999
+offset_right = 99.4799
+offset_bottom = 100.04
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_x6oii")
+
+[node name="Red_Button" type="TextureRect" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.136
+anchor_top = 0.67
+anchor_right = 0.223
+anchor_bottom = 0.824
+offset_left = 0.327988
+offset_top = -0.160004
+offset_right = 100.104
+offset_bottom = 100.048
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nrle8")
+
+[node name="Blue_Button" type="TextureRect" parent="."]
+modulate = Color(0, 0.741176, 0.85098, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.483
+anchor_top = 0.651
+anchor_right = 0.569
+anchor_bottom = 0.806
+offset_left = -0.416016
+offset_top = 0.151978
+offset_right = 100.512
+offset_bottom = 99.712
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nrle8")
+
+[node name="Green_Button" type="TextureRect" parent="."]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.791
+anchor_top = 0.654
+anchor_right = 0.878
+anchor_bottom = 0.809
+offset_left = -0.231995
+offset_top = 0.207977
+offset_right = 99.5439
+offset_bottom = 99.768
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nrle8")
+
+[node name="End_Button" type="TextureRect" parent="."]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.791
+anchor_top = 0.404
+anchor_right = 0.878
+anchor_bottom = 0.554
+offset_left = -0.231995
+offset_top = -2.79202
+offset_right = 99.5439
+offset_bottom = 100.008
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_x5lqn")
+
+[node name="Start_Button" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.136
+anchor_top = 0.4
+anchor_right = 0.223
+anchor_bottom = 0.554
+offset_left = 0.327988
+offset_top = -0.200012
+offset_right = 100.104
+offset_bottom = 100.008
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_x5lqn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_187a6")
+volume_db = 15.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.432
+anchor_right = 0.378
+anchor_bottom = 0.494
+offset_left = -0.288025
+offset_top = 0.0639954
+offset_right = 0.543976
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.403
+anchor_top = 0.432
+anchor_right = 0.437
+anchor_bottom = 0.494
+offset_left = -0.256042
+offset_top = 0.0639954
+offset_right = 0.575989
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.465
+anchor_top = 0.432
+anchor_right = 0.5
+anchor_bottom = 0.494
+offset_left = 0.319946
+offset_top = 0.0639954
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.531
+anchor_top = 0.432
+anchor_right = 0.566
+anchor_bottom = 0.494
+offset_left = 0.287964
+offset_top = 0.0639954
+offset_right = -0.0320435
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.592
+anchor_top = 0.432
+anchor_right = 0.627
+anchor_bottom = 0.494
+offset_left = 0.0159912
+offset_top = 0.0639954
+offset_right = -0.304016
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.653
+anchor_top = 0.432
+anchor_right = 0.687
+anchor_bottom = 0.494
+offset_left = -0.256042
+offset_top = 0.0639954
+offset_right = 0.575928
+offset_bottom = -0.112
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(599, 326)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_6b1q5")
+centered = false
+offset = Vector2(-30, -50)
+region_enabled = true
+region_rect = Rect2(101.3, 139.6, 358.725, 614.785)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.32
-anchor_top = 0.265
-anchor_right = 0.61
-anchor_bottom = 0.579
-offset_left = 0.359985
-offset_top = 0.279984
-offset_right = 0.279968
-offset_bottom = -0.192047
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 103.0
+offset_top = 58.0
+offset_right = -102.0
+offset_bottom = -111.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="focus_entered" from="Circle_Button" to="." method="_on_circle_button_focus_entered"]
+[connection signal="mouse_entered" from="Circle_Button" to="." method="_on_circle_button_mouse_entered"]
+[connection signal="mouse_entered" from="Square_Button" to="." method="_on_square_button_mouse_entered"]
+[connection signal="mouse_entered" from="Triangle_Button" to="." method="_on_triangle_button_mouse_entered"]
+[connection signal="mouse_entered" from="Red_Button" to="." method="_on_red_button_mouse_entered"]
+[connection signal="mouse_entered" from="Blue_Button" to="." method="_on_blue_button_mouse_entered"]
+[connection signal="mouse_entered" from="Green_Button" to="." method="_on_green_button_mouse_entered"]
+[connection signal="mouse_entered" from="End_Button" to="." method="_on_end_button_mouse_entered"]
+[connection signal="mouse_entered" from="Start_Button" to="." method="_on_start_button_mouse_entered"]

@@ -24,13 +24,13 @@ func _ready() -> void:
 	add_to_group("grabbable")
 	_bob()
 	if create_shape == 'circle':
-		print('creating cirlce')
+		#print('creating cirlce')
 		_create_circle(create_color)
 		pass
 	
 	elif create_shape == 'square':
 		_create_square(create_color)
-		print('creating square')
+		#print('creating square')
 	elif create_shape == 'triangle':
 		_create_triangle(create_color)
 
@@ -83,7 +83,6 @@ func _check_overlapping_areas() -> void:
 	
 	for area in $Area3D.get_overlapping_areas():
 		if area.name.begins_with("Bin"):
-			print(area.name)
 			#print(area.name)
 			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
 			queue_free()
