@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://tee8f4gof21a"]
+[gd_scene load_steps=4 format=3 uid="uid://tee8f4gof21a"]
 
 [ext_resource type="Script" path="res://Scenes/objects/factory/bin.gd" id="1_pyusl"]
+[ext_resource type="PackedScene" uid="uid://noau17asc5ir" path="res://Scenes/objects/factory/collection_bin.glb" id="2_j5lpg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
+size = Vector3(1.70079, 1.18125, 1.83742)
 
 [node name="Bin" type="Area3D"]
 collision_layer = 16
@@ -10,10 +12,10 @@ collision_mask = 3
 script = ExtResource("1_pyusl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.129787, 0.202673, -0.0162773)
 shape = SubResource("BoxShape3D_5elh5")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(1, 0.673706, 1)
+[node name="collection_bin" parent="." instance=ExtResource("2_j5lpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0842578, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

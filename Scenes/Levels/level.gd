@@ -55,11 +55,13 @@ func _on_bin_plus_one() -> void:
 func _manual_controls() -> void:
 	if Input.is_action_just_pressed("decrease error"):
 		for child_node in $".".get_children():
-			if child_node.name == 'ProductionMachine':
+			var child_name = child_node.name
+			if child_name.begins_with('ProductionMachine'):
 				child_node._decrease_error()
 	if Input.is_action_just_pressed("increase error"):
 		for child_node in $".".get_children():
-			if child_node.name == 'ProductionMachine':
+			var child_name = child_node.name
+			if child_name.begins_with('ProductionMachine'):
 				child_node._increase_error()
 	if Input.is_action_just_pressed("increase belt speed"):
 		production_speed += .25

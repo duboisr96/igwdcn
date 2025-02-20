@@ -27,6 +27,8 @@ var grabbable_obj : Node3D = null
 var grabbed_object : Node3D = null
 var pullable_obj : Node3D = null
 var pulled_obj : Node3D = null
+var interactable_obj : Node3D = null
+var interacted_obj: Node3D = null
 
 var am_holding := false
 var am_pulling := false
@@ -45,6 +47,7 @@ func _physics_process(_delta) -> void:
 	#Interact check
 	interact()
 	_hold_obj()
+	_pinpad_open()
 	_interacting()
 
 
@@ -97,9 +100,10 @@ func jump_logic(delta) -> void:
 		
 
 func _on_grab_area_body_entered(body: Node3D) -> void:
-	if (body.is_in_group("grabbable") && !am_holding) or (body.is_in_group("pullable") && !am_holding):
+	if (body.is_in_group("grabbable") && !am_holding) or (body.is_in_group("pullable") && !am_holding) or (body.is_in_group("interactable") && !am_holding):
+		
+		##this can easily be cleaned up by making one obj and checking later for sure
 		grabbable_obj = body
-		pullable_obj = body
 		#print('can be grabbed')
 	#if (body.is_in_group("pullable") && !am_holding):
 		#pullable_obj = body
@@ -109,8 +113,6 @@ func _on_grab_area_body_entered(body: Node3D) -> void:
 func _on_grab_area_body_exited(body: Node3D) -> void:
 	if body == grabbable_obj:
 		grabbable_obj = null
-	if body == pullable_obj:
-		pullable_obj = null
 
 
 func _grab(obj):
@@ -122,11 +124,18 @@ func _grab(obj):
 			col_shape.disabled = true
 			am_holding = true  
 		elif obj.is_in_group('pullable'):
+			print('pullable')
 			$FollowingCameraController.can_adjust = false
 			pulled_obj = obj
 			can_rotate = false
 			speed_modifier = 0
-			
+		elif obj.is_in_group('interactable'):
+			$FollowingCameraController.can_adjust = false
+			interacted_obj = obj
+			can_rotate = false
+			speed_modifier = 0
+		
+		
 			#update rotation with mouse movement
 			
 			#print('pulling')
@@ -150,7 +159,8 @@ func _hold_obj()  -> void:
 		am_holding = false
 	
 func _interacting()  -> void:
-	if pulled_obj != null and Input.is_action_pressed("interact") and !am_interacting:
+	print(pulled_obj)
+	if pulled_obj != null and Input.is_action_pressed("interact") and !am_interacting :
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		speed_modifier = 0
 		var gui_target = get_tree().get_nodes_in_group("control")
@@ -169,3 +179,28 @@ func _interacting()  -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 		speed_modifier = 1
+
+func _pinpad_open() -> void:
+
+	if interacted_obj != null and Input.is_action_pressed("interact") and !am_interacting:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		speed_modifier = 0
+		var gui_target = get_tree().get_nodes_in_group("control")
+		#print(gui_target)
+
+		if gui_target[1].name == 'pinpad':
+			print('opening pinpad')
+			gui_target[1].show()
+			#gui_target[0].grab_focus()
+			gui_target[1].MOUSE_FILTER_STOP
+	elif interacted_obj != null:
+		var gui_target = get_tree().get_nodes_in_group("control")
+		if gui_target[1].name == 'pinpad':
+			gui_target[1].hide()
+			#gui_target[0].grab_focus()
+			interacted_obj = null
+			gui_target[1].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+		speed_modifier = 1
+	pass

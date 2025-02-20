@@ -21,6 +21,7 @@ grabbable=""
 levels=""
 pullable=""
 control=""
+interactable=""
 
 [input]
 

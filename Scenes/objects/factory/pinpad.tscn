@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj6o62dteks2j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mtq1r"]
+
+[node name="wall_pinpad" type="StaticBody3D" groups=["interactable"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137085, 0.0473328, -0.00291443)
+size = Vector3(0.72583, 1.09467, 1.17374)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mtq1r")
