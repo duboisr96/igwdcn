@@ -82,7 +82,7 @@ func _on_body_entered(body: Node) -> void:
 func _check_overlapping_areas() -> void:
 	
 	for area in $Area3D.get_overlapping_areas():
-		if area.name == "Bin":
+		if area.name.begins_with("Bin"):
 			print(area.name)
 			#print(area.name)
 			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
@@ -122,6 +122,8 @@ func _show_shadow() -> void:
 			#print(area.name)
 			if area.name.begins_with('Belt'):
 				on_belt = true
+				create_velocity = area.belt_direction * create_velocity.length()
+				#if area.belt_direction = 
 		else:
 			$shadow.hide()
 	else:

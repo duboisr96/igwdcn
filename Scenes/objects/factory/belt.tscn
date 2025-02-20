@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://brpifkwn3qxka"]
+[gd_scene load_steps=4 format=3 uid="uid://brpifkwn3qxka"]
 
+[ext_resource type="Script" path="res://Scenes/objects/factory/belt.gd" id="1_mp4ms"]
 [ext_resource type="PackedScene" uid="uid://dw3qlg3yxm2r3" path="res://Scenes/objects/factory/conveyor_belt.tscn" id="2_wn71i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ulwhv"]
@@ -9,6 +10,7 @@ size = Vector3(4.60569, 0.32666, 0.773193)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405845, 0)
 collision_layer = 32
 collision_mask = 10
+script = ExtResource("1_mp4ms")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 3.35645, -0.130737, 0.000549316)

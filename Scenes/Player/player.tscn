@@ -83,12 +83,12 @@ max_limit_x = 0.2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="man/Armature" index="0"]
-bones/1/rotation = Quaternion(0.120144, 1.18346e-07, -1.43223e-08, 0.992757)
+bones/1/rotation = Quaternion(0.314911, 1.13144e-07, 4.04233e-08, 0.949121)
 bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
-bones/3/rotation = Quaternion(-1.42624e-09, -2.84746e-08, -0.110975, 0.993823)
+bones/3/rotation = Quaternion(-3.88569e-08, -2.69838e-08, -0.248409, 0.968655)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
-bones/5/rotation = Quaternion(-1.42624e-09, 2.84746e-08, 0.110975, 0.993823)
+bones/5/rotation = Quaternion(-3.88569e-08, 2.69838e-08, 0.248409, 0.968655)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.63993, 0.300816, 0.639929, -0.300816)
 bones/7/rotation = Quaternion(-0.257522, 1.80225e-07, 7.2783e-08, 0.966272)
@@ -107,7 +107,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48276, 1.08101)
 shape = SubResource("BoxShape3D_qbkvd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="man/GrabArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10484, 1.97726)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94061, 0.834558)
 visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

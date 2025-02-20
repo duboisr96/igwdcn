@@ -89,7 +89,6 @@ func _on_timer_timeout() -> void:
 	if parent[0].production_speed != global_speed_multiplier:
 		$Timer.stop()
 		global_speed_multiplier = parent[0].production_speed
-		update_timer()
 
 	rand = randi_range(1.0,100.0)
 	if rand <= error_top :

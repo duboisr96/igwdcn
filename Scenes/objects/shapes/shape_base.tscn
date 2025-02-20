@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/objects/shapes/shape_base.gd" id="1_hn2r8"]
 [ext_resource type="Texture2D" uid="uid://blqjiwe1v66mc" path="res://Scenes/objects/shapes/circle.png" id="2_2injy"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g31vr"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_q4d0h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svyq8"]
 
@@ -20,7 +20,7 @@ constant_force = Vector3(0, -1, 0)
 script = ExtResource("1_hn2r8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_g31vr")
+shape = SubResource("SphereShape3D_q4d0h")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.3, 0)
