@@ -112,10 +112,12 @@ transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 
 [node name="wall_pinpad2" parent="." instance=ExtResource("10_di831")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 5.99628, 0.813962, 4.35218)
 
+[connection signal="error_occured" from="ProductionMachine" to="." method="_on_production_machine_error_occured"]
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
 [connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
 [connection signal="code_entered" from="GUI canvas/pinpad2" to="." method="_on_pinpad_2_code_entered"]
 [connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]
+[connection signal="error_occured" from="ProductionMachine2" to="." method="_on_production_machine_2_error_occured"]
 [connection signal="minus_one" from="Bin2" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin2" to="." method="_on_bin_plus_one"]
