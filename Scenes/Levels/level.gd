@@ -13,6 +13,9 @@ var root = get_tree()
 @export var end_hour = 15
 @export var quota := 400
 
+var audio_pitch_min = 0.7
+var audio_pitch_max = 1.3
+
 
 @onready var player_gui = $"GUI canvas/PlayerGUI"
 var update_timer = false
@@ -80,6 +83,8 @@ func _rotate_lever() -> void:
 	var current_prod = production_speed
 	$SpeedLever.rotation.z = (($"GUI canvas/Lever Controls".rotate_val - input_min) / (input_max - input_min)*(angle_max_rads - angle_min_rads)+angle_min_rads)
 	production_speed = (($"GUI canvas/Lever Controls".rotate_val - input_min) / (input_max - input_min)*(production_max - production_min)+production_min)
+	$Player/AudioStreamPlayer3D.pitch_scale = (($"GUI canvas/Lever Controls".rotate_val - input_min) / (input_max - input_min)*(audio_pitch_max - audio_pitch_min)+audio_pitch_min)
+	
 	if current_prod != production_speed:
 		#var temp_timer = 
 		update_timer = true
@@ -107,3 +112,12 @@ func _on_stage_time_timeout() -> void:
 	else:
 		print ("you've won")
 	pass # Replace with function body.
+
+
+func _on_pinpad_code_entered(code: Variant) -> void:
+	print('pinpad 1 code: ', code)
+	$ProductionMachine.check_error(code)
+
+func _on_pinpad_2_code_entered(code: Variant) -> void:
+	$ProductionMachine2.check_error(code)
+	print('pinpad 2 code ', code)

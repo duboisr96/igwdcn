@@ -15,7 +15,7 @@ const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
 #@export var error_percentage := 0.0
 @export var production_default := 3.0
 @export var global_speed_multiplier := 1.0
-
+@export var error_incriment := .5
 var rand = randi_range(1.0,100.0)
 @export var error_top := 99.0
 var error_amount := 0.0
@@ -28,13 +28,14 @@ var error_log := []
 #var make_color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	print(error_log == null)
 	$Timer.wait_time = production_default
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	error_top = error_top - delta*error_incriment*global_speed_multiplier
 	var parent = get_tree().get_nodes_in_group("levels")
 	#print($Timer.time_left)
 	var how_fast = parent[0].production_speed
@@ -83,7 +84,7 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	#print('timer timeout')
-	print(counter)
+	#print(counter)
 	counter = 0
 	var parent = get_tree().get_nodes_in_group("levels")
 	if parent[0].production_speed != global_speed_multiplier:
@@ -148,6 +149,8 @@ func _handle_error(error_val) -> void:
 		pass
 
 func _output_shape(shape_num, color_num) -> void:
+	print(error_top)
+
 	var new_shape = shape_scene.instantiate()
 	new_shape.create_shape = default_shape_array[shape_num] #shape of product to be produced
 	new_shape.create_color = default_color_array[color_num] #color of shape to be produced
@@ -168,3 +171,23 @@ func _increase_error() -> void:
 	if error_top >=5:
 		error_top -=5
 		print('increasing error, error total is ', 100 - error_top, '%')
+		
+func check_error(code) -> void:
+	print('checking error')
+	if code[0] == 'Start':
+		print(default_color_array[default_color_to_create])
+		if code[1] == default_color_array[default_color_to_create]:
+			if code[2] == default_shape_array[default_shape_to_create]:
+				if not error_log.is_empty():
+					if code[3] == default_color_array[error_log[1]]:
+						if code[4] == default_shape_array[error_log[0]]:
+							if code[5] == 'End':
+								error_log.clear()
+								print('fixed error!!')
+								error_top = 99.0
+								error_amount = 0
+	else:
+		error_top -=20
+		print('ERROR', error_top)
+	print(code)
+	pass
