@@ -17,7 +17,10 @@ func toggle_pause():
 	get_tree().paused = is_paused
 	visible = is_paused
 	if is_paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_viewport().set_input_as_handled()
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_resume_button_pressed():
