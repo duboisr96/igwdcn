@@ -20,17 +20,10 @@ initial_velocity_max = 362.98
 gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_drpdg")
 
-[node name="WinScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="WinScreen" type="CanvasLayer"]
 script = ExtResource("1_ys0eo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
