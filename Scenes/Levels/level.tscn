@@ -14,22 +14,31 @@
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_elx3x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_energy_multiplier = 1.2
+ground_bottom_color = Color(0.658632, 0.660171, 0.931931, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sun_angle_max = 12.0
 
-[sub_resource type="Sky" id="Sky_p2cvp"]
-sky_material = SubResource("ProceduralSkyMaterial_yq5cy")
+[sub_resource type="Sky" id="Sky_gkc2i"]
+sky_material = SubResource("ProceduralSkyMaterial_elx3x")
 
-[sub_resource type="Environment" id="Environment_8cytq"]
-background_energy_multiplier = 3.15
-sky = SubResource("Sky_p2cvp")
-tonemap_mode = 1
-tonemap_white = 1.17
-ssao_radius = 8.91
-ssao_intensity = 1.83
-ssil_enabled = true
-glow_blend_mode = 0
+[sub_resource type="Environment" id="Environment_hh84c"]
+background_mode = 2
+sky = SubResource("Sky_gkc2i")
+ambient_light_energy = 1.5
+reflected_light_source = 1
+tonemap_exposure = 0.8
+tonemap_white = 0.9
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.12
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.682353, 0.776471, 0.811765, 1)
+fog_density = 0.05
+fog_height = 5.0
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_u28yv")
@@ -37,11 +46,17 @@ angle_min_rads = -0.3
 angle_max_rads = -2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8cytq")
+environment = SubResource("Environment_hh84c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.890547, -0.416967, -0.181835, -0.139375, -0.1304, 0.981616, -0.433013, 0.899519, 0.058013, 0, 4.24247, 1.14331)
+transform = Transform3D(-0.903547, -0.42827, -0.0137217, -0.0114793, -0.00781829, 0.999904, -0.428336, 0.903617, 0.00214795, 0, 6.91751, 1.14331)
+light_color = Color(1, 0.960784, 0.878431, 1)
+light_energy = 2.5
 shadow_enabled = true
+shadow_bias = 0.05
+shadow_opacity = 0.86
+shadow_blur = 3.286
+directional_shadow_mode = 1
 
 [node name="ProductionMachine1" parent="." instance=ExtResource("1_ks7je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.47409, 0.493694, 0)
@@ -125,6 +140,7 @@ visible = false
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
 
 [node name="ProductionMachine3" parent="." instance=ExtResource("1_ks7je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8405, 5.42266, 0)
 visible = false
 production_default = 0.0
 

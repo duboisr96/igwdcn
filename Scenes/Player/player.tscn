@@ -80,15 +80,17 @@ min_limit_x = -0.8
 max_limit_x = 0.2
 
 [node name="man" parent="." instance=ExtResource("3_v4l0p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0299919, 0)
 
 [node name="Skeleton3D" parent="man/Armature" index="0"]
 
+
 bones/1/rotation = Quaternion(0.182343, 1.17211e-07, -2.1737e-08, 0.983235)
 bones/2/rotation = Quaternion(7.05772e-10, 1.94742e-09, -0.712403, 0.701771)
-bones/3/rotation = Quaternion(-1.75413e-10, -2.85098e-08, -0.154476, 0.987997)
+bones/3/rotation = Quaternion(-2.83918e-08, -2.73229e-08, -0.253155, 0.967426)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(7.05772e-10, -1.94742e-09, 0.712403, 0.701771)
+
 bones/5/rotation = Quaternion(-1.75412e-10, 2.85098e-08, 0.154476, 0.987997)
 
 bones/5/scale = Vector3(1, 1, 1)
