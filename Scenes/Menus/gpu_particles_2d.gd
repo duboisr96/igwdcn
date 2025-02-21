@@ -26,4 +26,3 @@ func create_color_ramp(color_list):
 	var color_ramp_texture := GradientTexture1D.new()
 	color_ramp_texture.gradient = gradient
 	return color_ramp_texture
-# Called every frame. 'delta' is the elapsed time since the previous frame.
