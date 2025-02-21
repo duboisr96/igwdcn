@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		current_count+= delta
 	
 	if (current_count >= expload_counter) and alive:
-		print('alive is ', alive)
+		#print('alive is ', alive)
 		alive = false
 		var node_level = get_tree().get_nodes_in_group("levels")
 		node_level[0].shape_pop()
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		$Area3D/CollisionShape3D.disabled
 		$CollisionShape3D.disabled
 	
-	print(current_count)
+	#print(current_count)
 		#print($".", " speed is ", motion, " position is ", position)
 	_turn_to()
 	_check_overlapping_areas()
@@ -97,11 +97,11 @@ func _on_body_entered(body: Node) -> void:
 func _check_overlapping_areas() -> void:
 	
 	for area in $Area3D.get_overlapping_areas():
-		if area.name.begins_with("Bin"):
+		#if area.name.begins_with("Bin"):
 			#print(area.name)
 			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
-			queue_free()
-		elif area.name.begins_with("recycle"):
+			#queue_free()
+		if area.name.begins_with("recycle"):
 			var sound = area.get_node('shred')
 			sound.play()
 			queue_free()
@@ -146,3 +146,6 @@ func _show_shadow() -> void:
 			$shadow.hide()
 	else:
 		on_belt = false
+		
+func _que_three() -> void:
+	queue_free()

@@ -29,9 +29,8 @@ glow_enabled = true
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_u28yv")
-angle_min_rads = 0.26
-angle_max_rads = 2.9
-quota = 30
+angle_min_rads = -0.3
+angle_max_rads = -2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
@@ -69,7 +68,7 @@ stream = ExtResource("11_gkygv")
 autoplay = true
 
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
-transform = Transform3D(0.00383955, -1.34135e-05, 0.249971, -0.249969, 0.000872556, 0.00383957, -0.000872659, -0.249998, -1.09266e-08, -4.32291, 0.843469, 1.01241)
+transform = Transform3D(-0.00383955, 1.34354e-05, -0.249971, -0.00087267, -0.249998, -3.30746e-08, -0.249969, 0.000872567, 0.00383957, -4.32291, 0.843469, 1.01241)
 
 [node name="GUI canvas" type="CanvasLayer" parent="."]
 
@@ -88,7 +87,7 @@ visible = false
 [node name="StageTime" type="Timer" parent="."]
 
 [node name="Belt2" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842766, 0.085866, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842766, 0.276257, 0)
 belt_direction = Vector3(1, 0, 0)
 
 [node name="ProductionMachine2" parent="." instance=ExtResource("1_ks7je")]
@@ -107,7 +106,6 @@ belt_direction = Vector3(-1, 0, 0)
 [node name="Bin2" parent="." instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03629, 0.0938004, 5.26556)
 shape = "square"
-color = "SKY_BLUE"
 
 [node name="wall_pinpad1" parent="." instance=ExtResource("10_di831")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -3.17966, 0.872066, 1.04959)
