@@ -259,7 +259,6 @@ region_enabled = true
 region_rect = Rect2(101.3, 139.6, 358.725, 614.785)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

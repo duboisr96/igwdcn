@@ -10,6 +10,12 @@ const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
 signal error_occured
 @onready var shape_to_create = default_shape_array[default_shape_to_create]
 @onready var color_to_create = default_color_array[default_color_to_create]
+@onready var circle = preload("res://Scenes/objects/shapes/circle.png")
+@onready var square = preload("res://Scenes/objects/shapes/square.png")
+@onready var triangle = preload("res://Scenes/objects/shapes/triangle.png")
+@onready var png_array = [circle, square, triangle]
+
+
 
 @export var default_velocity := Vector3(.5,0,0)
 #@export var error_percentage := 0.0
@@ -24,13 +30,14 @@ var error_amount := 0.0
 var temp_timer
 var counter = 0
 var counter_limit = 3 # per a standard 3 seconds it takes 432 to make on ryan pc
-
+var not_spinning = true
 var error_log := []
 #var make_shape
 #var make_color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	$Sprite3D.texture = png_array[default_shape_to_create]
+	$Sprite3D.modulate = default_color_array[default_color_to_create]
 	$Timer.wait_time = production_default
 	pass # Replace with function body.
 
@@ -161,6 +168,7 @@ func _handle_error(error_val) -> void:
 func _output_shape(shape_num, color_num) -> void:
 	#print(error_top)
 	$create_sound.play()
+	spin_lights()
 	var new_shape = shape_scene.instantiate()
 	new_shape.create_shape = default_shape_array[shape_num] #shape of product to be produced
 	new_shape.create_color = default_color_array[color_num] #color of shape to be produced
@@ -201,3 +209,11 @@ func check_error(code) -> void:
 		$code_incorrect_sound.play()
 	#print(code)
 	pass
+func spin_lights():
+	print('spin')
+	$SpotLight3D.light_energy = 0.0
+	$SpotLight3D.show()
+	var tween = create_tween()
+	tween.tween_property($SpotLight3D, 'light_energy', 1.0, 1/global_speed_multiplier)
+	await tween.finished
+	$SpotLight3D.hide()
