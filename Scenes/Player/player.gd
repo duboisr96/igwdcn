@@ -54,8 +54,8 @@ func _physics_process(_delta) -> void:
 func interact() -> void:
 	var tween = create_tween()
 	##this is unrelated to currently chillin here
-	if Input.is_action_just_pressed("unlock mouse"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#if Input.is_action_just_pressed("unlock mouse"):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	
 	if (Input.is_action_pressed("interact")):
@@ -92,12 +92,12 @@ func move_logic(delta) -> void:
 		move_state_machine.travel('Idle??')
 func jump_logic(delta) -> void:
 	#handles vertical movement
-	if is_on_floor():
-		if (Input.is_action_pressed("jump")):
-			velocity.y = -jump_velocity
-	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
-	velocity.y -= gravity * delta
-		
+	#if is_on_floor():
+		#if (Input.is_action_pressed("jump")):
+			#velocity.y = -jump_velocity
+	#var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
+	#velocity.y -= gravity * delta
+	pass
 
 func _on_grab_area_body_entered(body: Node3D) -> void:
 	if (body.is_in_group("grabbable") && !am_holding) or (body.is_in_group("pullable") && !am_holding) or (body.is_in_group("interactable") && !am_holding):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=17 format=3 uid="uid://cmlwf8gc0s78m"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_u28yv"]
@@ -27,11 +27,11 @@ sky = SubResource("Sky_p2cvp")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Level" type="Node3D"]
+[node name="Level_1" type="Node3D"]
 script = ExtResource("1_u28yv")
 angle_min_rads = 0.26
 angle_max_rads = 2.9
-quota = 30
+quota = 40
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
@@ -91,34 +91,12 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842766, 0.085866, 0)
 belt_direction = Vector3(1, 0, 0)
 
-[node name="ProductionMachine2" parent="." instance=ExtResource("1_ks7je")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.20137, 0.48533, 5.23552)
-default_shape_to_create = 1
-default_velocity = Vector3(-0.5, 0, 0)
-
-[node name="Belt3" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.30897, 0.195216, 5.17268)
-belt_direction = Vector3(-1, 0, 0)
-
-[node name="Belt4" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.230114, 0.101998, 5.17268)
-belt_direction = Vector3(-1, 0, 0)
-
-[node name="Bin2" parent="." instance=ExtResource("2_fj8l3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03629, 0.0938004, 5.26556)
-shape = "square"
-color = "SKY_BLUE"
-
 [node name="wall_pinpad1" parent="." instance=ExtResource("10_di831")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -3.17966, 0.872066, 1.04959)
 visible = false
 
-[node name="wall_pinpad2" parent="." instance=ExtResource("10_di831")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 5.99628, 0.813962, 4.35218)
-visible = false
-
 [node name="recycle" parent="." instance=ExtResource("13_o5q4p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.440681, -0.0384984, 3.21078)
 
 [connection signal="error_occured" from="ProductionMachine" to="." method="_on_production_machine_error_occured"]
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
@@ -126,6 +104,3 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
 [connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
 [connection signal="code_entered" from="GUI canvas/pinpad2" to="." method="_on_pinpad_2_code_entered"]
 [connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]
-[connection signal="error_occured" from="ProductionMachine2" to="." method="_on_production_machine_2_error_occured"]
-[connection signal="minus_one" from="Bin2" to="." method="_on_bin_minus_one"]
-[connection signal="plus_one" from="Bin2" to="." method="_on_bin_plus_one"]

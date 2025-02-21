@@ -15,9 +15,9 @@ signal error_occured
 #@export var error_percentage := 0.0
 @export var production_default := 3.0
 @export var global_speed_multiplier := 1.0
-@export var error_incriment := .5
-@export var error_infection := 2.0
-@export var speed_infection := 0.2
+@export var error_incriment := .25
+@export var error_infection := 1.0
+#@export var speed_infection := 0.2
 var rand = randi_range(1.0,100.0)
 @export var error_top := 99.0
 var error_amount := 0.0
@@ -38,8 +38,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#print(global_speed_multiplier)
-	
-	error_top = error_top - delta*error_incriment*global_speed_multiplier
+	#print(error_top)
+	error_top = error_top - delta*error_incriment *global_speed_multiplier 
 	var parent = get_tree().get_nodes_in_group("levels")
 	#print($Timer.time_left)
 	var how_fast = parent[0].production_speed
@@ -110,7 +110,7 @@ func _handle_error(error_val) -> void:
 	#print('error')
 	error_top -= error_infection
 	error_occured.emit()
-	$AudioStreamPlayer3D.play()
+	$error_sound.play()
 	#global_speed_multiplier += speed_infection
 	print('global speed ', global_speed_multiplier)
 	var rando_spread := randi_range(1,10)
@@ -160,7 +160,7 @@ func _handle_error(error_val) -> void:
 
 func _output_shape(shape_num, color_num) -> void:
 	#print(error_top)
-
+	$create_sound.play()
 	var new_shape = shape_scene.instantiate()
 	new_shape.create_shape = default_shape_array[shape_num] #shape of product to be produced
 	new_shape.create_color = default_color_array[color_num] #color of shape to be produced
@@ -193,11 +193,11 @@ func check_error(code) -> void:
 						if code[4] == default_shape_array[error_log[0]]:
 							if code[5] == 'End':
 								error_log.clear()
-								print('fixed error!!')
+								$code_correct_sound.play()
 								error_top = 99.0
 								error_amount = 0
 	else:
 		error_top -=20
-		print('ERROR', error_top)
-	print(code)
+		$code_incorrect_sound.play()
+	#print(code)
 	pass

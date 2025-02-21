@@ -8,7 +8,7 @@ size = Vector3(1.70079, 1.18125, 1.83742)
 
 [node name="Bin" type="Area3D"]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_pyusl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

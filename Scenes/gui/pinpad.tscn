@@ -1,13 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch6ciytfbiypn"]
+[gd_scene load_steps=15 format=3 uid="uid://ch6ciytfbiypn"]
 
 [ext_resource type="Script" path="res://Scenes/gui/pinpad.gd" id="1_pgvvc"]
 [ext_resource type="Texture2D" uid="uid://bhw06twyahbjq" path="res://Assets/REPLACEREPLACE.PNG" id="2_a3e1x"]
 [ext_resource type="Texture2D" uid="uid://blqjiwe1v66mc" path="res://Scenes/objects/shapes/circle.png" id="2_nrle8"]
 [ext_resource type="Texture2D" uid="uid://bhpgret5qtb2c" path="res://Scenes/objects/shapes/square.png" id="3_cnolb"]
 [ext_resource type="Texture2D" uid="uid://dod7x5rx2ayej" path="res://Scenes/objects/shapes/triangle.png" id="4_x6oii"]
-[ext_resource type="Texture2D" uid="uid://byenk6t4tpvw2" path="res://icon.svg" id="5_x5lqn"]
+[ext_resource type="Texture2D" uid="uid://dv7dr7lo11guk" path="res://Assets/symbol4.png" id="6_1dlyu"]
 [ext_resource type="Texture2D" uid="uid://cg5ciqvo8jf3l" path="res://Assets/Mouse-cursor-hand-pointer.svg.png" id="6_6b1q5"]
+[ext_resource type="Texture2D" uid="uid://bh7iqvh3kcvf1" path="res://Assets/symbol5.png" id="7_fvm0n"]
 [ext_resource type="AudioStream" uid="uid://cwpfpslldlqv5" path="res://Assets/Click 1.wav" id="8_187a6"]
+[ext_resource type="Texture2D" uid="uid://cy8evoj2ucn0c" path="res://Assets/symbol6.png" id="8_70140"]
+[ext_resource type="Texture2D" uid="uid://d16dj0jefuajj" path="res://Assets/symbol7.png" id="9_f58fl"]
+[ext_resource type="Texture2D" uid="uid://bqtbthvnkr3ki" path="res://Assets/symbol8.png" id="10_f14ix"]
+[ext_resource type="Texture2D" uid="uid://dfdhr58od12b4" path="res://Assets/sticky1.png" id="13_khka6"]
+[ext_resource type="Texture2D" uid="uid://cy82q7ga2sbds" path="res://Assets/sticky3.png" id="14_i2ere"]
 
 [node name="pinpad" type="Control" groups=["control"]]
 layout_mode = 3
@@ -87,7 +93,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_x6oii")
 
 [node name="Red_Button" type="TextureRect" parent="."]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.136
@@ -99,10 +104,9 @@ offset_top = -0.160004
 offset_right = 100.104
 offset_bottom = 100.048
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_nrle8")
+texture = ExtResource("6_1dlyu")
 
 [node name="Blue_Button" type="TextureRect" parent="."]
-modulate = Color(0, 0.741176, 0.85098, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.483
@@ -114,10 +118,9 @@ offset_top = 0.151978
 offset_right = 100.512
 offset_bottom = 99.712
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_nrle8")
+texture = ExtResource("7_fvm0n")
 
 [node name="Green_Button" type="TextureRect" parent="."]
-modulate = Color(0, 1, 0, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.791
@@ -129,10 +132,9 @@ offset_top = 0.207977
 offset_right = 99.5439
 offset_bottom = 99.768
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_nrle8")
+texture = ExtResource("8_70140")
 
 [node name="End_Button" type="TextureRect" parent="."]
-modulate = Color(1, 0, 1, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.791
@@ -144,7 +146,7 @@ offset_top = -2.79202
 offset_right = 99.5439
 offset_bottom = 100.008
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_x5lqn")
+texture = ExtResource("9_f58fl")
 
 [node name="Start_Button" type="TextureRect" parent="."]
 layout_mode = 1
@@ -158,7 +160,7 @@ offset_top = -0.200012
 offset_right = 100.104
 offset_bottom = 100.008
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_x5lqn")
+texture = ExtResource("10_f14ix")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_187a6")
@@ -257,6 +259,7 @@ region_enabled = true
 region_rect = Rect2(101.3, 139.6, 358.725, 614.785)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -267,6 +270,18 @@ offset_right = -102.0
 offset_bottom = -111.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(59, 364)
+rotation = -0.0872665
+scale = Vector2(0.13, 0.133)
+texture = ExtResource("13_khka6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1075, 523)
+rotation = 0.0872665
+scale = Vector2(0.1525, 0.1525)
+texture = ExtResource("14_i2ere")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
