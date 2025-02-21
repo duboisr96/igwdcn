@@ -20,5 +20,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group('grabbable'):
 		if body.create_shape == shape && body.create_color == color:
 			emit_signal('plus_one')
+			body._que_three()
 		else:
 			emit_signal('minus_one')
+			body._que_three()

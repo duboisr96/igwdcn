@@ -161,7 +161,7 @@ func _hold_obj()  -> void:
 func _interacting()  -> void:
 	#print(pulled_obj)
 	if pulled_obj != null and Input.is_action_pressed("interact") and !am_interacting :
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN )
 		speed_modifier = 0
 		var gui_target = get_tree().get_nodes_in_group("control")
 		#print(gui_target)
@@ -169,6 +169,7 @@ func _interacting()  -> void:
 			gui_target[0].show()
 			#gui_target[0].grab_focus()
 			gui_target[0].MOUSE_FILTER_STOP
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	elif pulled_obj != null:
 		var gui_target = get_tree().get_nodes_in_group("control")
 		if gui_target[0].name == 'Lever Controls':
@@ -193,12 +194,18 @@ func _pinpad_open() -> void:
 				gui_target[1].show()
 				#gui_target[0].grab_focus()
 				gui_target[1].MOUSE_FILTER_STOP
-		elif interacted_obj.name.find('2') != -1:
+		if interacted_obj.name.find('2') != -1:
 			if gui_target[2].name == 'pinpad2':
 				#print('opening pinpad')
 				gui_target[2].show()
 				#gui_target[0].grab_focus()
 				gui_target[2].MOUSE_FILTER_STOP
+		if interacted_obj.name.find('3') != -1:
+			if gui_target[3].name == 'pinpad3':
+				#print('opening pinpad')
+				gui_target[3].show()
+				#gui_target[0].grab_focus()
+				gui_target[3].MOUSE_FILTER_STOP
 	elif interacted_obj != null:
 		var gui_target = get_tree().get_nodes_in_group("control")
 		if gui_target[1].name == 'pinpad1':
@@ -212,6 +219,12 @@ func _pinpad_open() -> void:
 			#gui_target[0].grab_focus()
 			interacted_obj = null
 			gui_target[2].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if gui_target[3].name == 'pinpad3':
+			gui_target[3].hide()
+			#gui_target[0].grab_focus()
+			interacted_obj = null
+			gui_target[3].MOUSE_FILTER_IGNORE
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		speed_modifier = 1
 	pass

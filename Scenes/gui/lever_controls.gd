@@ -19,6 +19,13 @@ func _process(delta: float) -> void:
 	#tp_mouse()
 	var current_mouse_position = get_global_mouse_position()
 	var mouse_movement = current_mouse_position.y - previous_mouse_position.y
+	var mouse_pos = get_global_mouse_position()
+	#mouse_pos.x = clamp(mouse_pos.x, 0, DisplayServer.window_get_size().x - 10)
+	#mouse_pos.y = clamp(mouse_pos.y, 0, DisplayServer.window_get_size().y - 100)
+	##print(DisplayServer.screen_get_size(), DisplayServer.window_get_size())
+	#warp_mouse(mouse_pos)
+	
+	
 	#print(vslider.value)
 	if visible:
 		if mouse_movement >0:

@@ -112,7 +112,7 @@ func _handle_error(error_val) -> void:
 	error_occured.emit()
 	$error_sound.play()
 	#global_speed_multiplier += speed_infection
-	print('global speed ', global_speed_multiplier)
+	#print('global speed ', global_speed_multiplier)
 	var rando_spread := randi_range(1,10)
 	if error_amount == 1:
 		_output_shape(error_log[0], error_log[1])
@@ -183,9 +183,9 @@ func _increase_error() -> void:
 		print('increasing error, error total is ', 100 - error_top, '%')
 		
 func check_error(code) -> void:
-	print('checking error')
+	#print('checking error')
 	if code[0] == 'Start':
-		print(default_color_array[default_color_to_create])
+		#print(default_color_array[default_color_to_create])
 		if code[1] == default_color_array[default_color_to_create]:
 			if code[2] == default_shape_array[default_shape_to_create]:
 				if not error_log.is_empty():
