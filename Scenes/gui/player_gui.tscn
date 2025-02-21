@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqy7a4ltv7ood"]
+[gd_scene load_steps=3 format=3 uid="uid://cqy7a4ltv7ood"]
 
 [ext_resource type="Script" path="res://player_gui.gd" id="1_16ylg"]
+[ext_resource type="Texture2D" uid="uid://cx02o3apgupbv" path="res://Scenes/gui/clipboard-transparen.png" id="2_syp5o"]
 
 [node name="PlayerGUI" type="Control"]
 layout_mode = 3
@@ -12,26 +13,15 @@ grow_vertical = 2
 script = ExtResource("1_16ylg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 540.0
 offset_right = 649.0
 offset_bottom = 39.0
 color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 
-[node name="Timer" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.392
-anchor_right = 0.632
-anchor_bottom = 0.099
-offset_left = 2.41599
-offset_top = 3.0
-offset_right = 4.93597
-offset_bottom = 0.847992
-text = "TIMER"
-horizontal_alignment = 1
-
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.882
@@ -42,26 +32,70 @@ offset_left = -0.0640259
 offset_bottom = -0.128006
 color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 
-[node name="Quota_todo" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.885
-anchor_top = 0.255
-anchor_right = 0.998
-anchor_bottom = 0.312
-offset_left = -0.520081
-offset_top = -0.240021
-offset_right = 1.30396
-offset_bottom = -0.17601
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Quota_done" type="Label" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.885
-anchor_top = 0.316
-anchor_right = 0.998
-anchor_bottom = 0.38
-offset_left = 0.479919
-offset_top = 0.231995
-offset_right = 0.303955
-offset_bottom = -0.240021
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -127.0
+offset_right = 229.0
+offset_bottom = 380.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.51654, 0.51654)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_syp5o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Timer" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "TIMER"
+horizontal_alignment = 1
+
+[node name="Test" type="RichTextLabel" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+fit_content = true
+
+[node name="Quota_todo" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Quota_done" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
