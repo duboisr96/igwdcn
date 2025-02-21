@@ -8,9 +8,10 @@ extends RigidBody3D
 @export var create_velocity := Vector3.ZERO ##LETS SET IT TO AN ADDS TO 1 VALUE
 var motion = Vector3.ZERO
 var global_shape_velocity := 1.0
-
+@export var expload_counter = 5.0
+var current_count = 0.0
 var belt_speed_multiplier := 1.0
-
+var alive = true
 #update png with filepath
 var shape_dict := {
 	"square" : preload("res://Scenes/objects/shapes/square.png"),
@@ -35,6 +36,20 @@ func _ready() -> void:
 		_create_triangle(create_color)
 
 func _physics_process(delta: float) -> void:
+	if not on_belt and alive:
+		current_count+= delta
+	
+	if (current_count >= expload_counter) and alive:
+		print('alive is ', alive)
+		alive = false
+		var node_level = get_tree().get_nodes_in_group("levels")
+		node_level[0].shape_pop()
+		$AudioStreamPlayer3D.play()
+		hide()
+		$Area3D/CollisionShape3D.disabled
+		$CollisionShape3D.disabled
+	
+	print(current_count)
 		#print($".", " speed is ", motion, " position is ", position)
 	_turn_to()
 	_check_overlapping_areas()
@@ -85,6 +100,10 @@ func _check_overlapping_areas() -> void:
 		if area.name.begins_with("Bin"):
 			#print(area.name)
 			#print("collected a ", create_color, ' ', create_shape, " in a ",area.color, " ", area.shape, " bin!")
+			queue_free()
+		elif area.name.begins_with("recycle"):
+			var sound = area.get_node('shred')
+			sound.play()
 			queue_free()
 			#break
 		#elif area.name == "Belt":  # Check if the area's name is "belt"

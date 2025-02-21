@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://b60cln17berfx"]
+
+[ext_resource type="Script" path="res://level_1.gd" id="1_4ywtc"]
+[ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="2_624d0"]
+[ext_resource type="PackedScene" uid="uid://bxgwyoa86dshf" path="res://Scenes/gui/lever_controls.tscn" id="3_cmacg"]
+[ext_resource type="PackedScene" uid="uid://cqy7a4ltv7ood" path="res://Scenes/gui/player_gui.tscn" id="4_hqjyv"]
+[ext_resource type="PackedScene" uid="uid://ch6ciytfbiypn" path="res://Scenes/gui/pinpad.tscn" id="5_2fobd"]
+[ext_resource type="PackedScene" uid="uid://cn38qpit1o2wo" path="res://Scenes/objects/factory/production_machine.glb" id="6_jhngd"]
+[ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="7_y7hxm"]
+[ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="8_p4prd"]
+[ext_resource type="PackedScene" uid="uid://bj4rgdb26x477" path="res://Scenes/objects/factory/wall_pinpad.tscn" id="9_4vew6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i534e"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kp53o"]
+sky_material = SubResource("ProceduralSkyMaterial_i534e")
+
+[sub_resource type="Environment" id="Environment_rmlw3"]
+background_mode = 2
+sky = SubResource("Sky_kp53o")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_4ywtc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rmlw3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9547, 0, -18.0384)
+size = Vector3(164.877, 1, 136.922)
+
+[node name="Player" parent="." instance=ExtResource("2_624d0")]
+transform = Transform3D(0.5, 0, -8.74228e-08, 0, 0.5, 0, 8.74228e-08, 0, 0.5, -6.8724, 0.562309, -3.28311)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lever Controls" parent="CanvasLayer" instance=ExtResource("3_cmacg")]
+
+[node name="PlayerGUI" parent="CanvasLayer" instance=ExtResource("4_hqjyv")]
+
+[node name="pinpad1" parent="CanvasLayer" instance=ExtResource("5_2fobd")]
+visible = false
+
+[node name="production_machine" parent="." instance=ExtResource("6_jhngd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69951, 0.557311, -8.12384)
+
+[node name="Belt" parent="." instance=ExtResource("7_y7hxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.805845, -8)
+
+[node name="SpeedLever" parent="." instance=ExtResource("8_p4prd")]
+transform = Transform3D(3.72529e-09, -1.49012e-08, 0.5, 0.482963, 0.12941, -1.92835e-09, -0.12941, 0.482963, 0, -10.4781, 1.45374, -7.11376)
+
+[node name="wall_pinpad" parent="." instance=ExtResource("9_4vew6")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -9.44787, 1.46282, -6.94322)
+visible = false

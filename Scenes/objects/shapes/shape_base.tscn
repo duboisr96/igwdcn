@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw44xutd13o53"]
+[gd_scene load_steps=6 format=3 uid="uid://cw44xutd13o53"]
 
 [ext_resource type="Script" path="res://Scenes/objects/shapes/shape_base.gd" id="1_hn2r8"]
 [ext_resource type="Texture2D" uid="uid://blqjiwe1v66mc" path="res://Scenes/objects/shapes/circle.png" id="2_2injy"]
+[ext_resource type="AudioStream" uid="uid://cb2hpu0h3856c" path="res://Assets/wompwomp.wav" id="3_s8vv7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q4d0h"]
 
@@ -44,5 +45,10 @@ transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 
 visible = false
 modulate = Color(0.00392157, 0.00392157, 0.00392157, 0.792157)
 texture = ExtResource("2_2injy")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_s8vv7")
+volume_db = 21.93
+pitch_scale = 1.45
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
