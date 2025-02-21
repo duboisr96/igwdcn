@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=20 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level_3_real.gd" id="1_um81g"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
 [ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
+[ext_resource type="Texture2D" uid="uid://dkbf87d6pbdak" path="res://Assets/symbol1.png" id="7_f3dmg"]
 [ext_resource type="PackedScene" uid="uid://bxgwyoa86dshf" path="res://Scenes/gui/lever_controls.tscn" id="7_w5vxh"]
 [ext_resource type="PackedScene" uid="uid://cqy7a4ltv7ood" path="res://Scenes/gui/player_gui.tscn" id="8_756vi"]
+[ext_resource type="Texture2D" uid="uid://b1jykpi4pb8ii" path="res://Assets/symbol2.png" id="8_edq3k"]
+[ext_resource type="Texture2D" uid="uid://8lhu4i8jn776" path="res://Assets/symbol3.png" id="9_3nh64"]
 [ext_resource type="PackedScene" uid="uid://ch6ciytfbiypn" path="res://Scenes/gui/pinpad.tscn" id="9_wvw48"]
 [ext_resource type="PackedScene" uid="uid://bj4rgdb26x477" path="res://Scenes/objects/factory/wall_pinpad.tscn" id="10_di831"]
 [ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="11_gkygv"]
@@ -29,10 +32,12 @@ glow_enabled = true
 
 [node name="Level_3" type="Node3D"]
 script = ExtResource("1_um81g")
+production_speed = 0.5
+production_min = 0.5
 angle_min_rads = -0.3
 angle_max_rads = -2.0
 quota = 100
-error_speed_up = 5
+error_speed_up = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
@@ -64,9 +69,15 @@ autoplay = true
 
 [node name="pinpad1" parent="GUI canvas" instance=ExtResource("9_wvw48")]
 visible = false
+circle = ExtResource("7_f3dmg")
+square = ExtResource("8_edq3k")
+triangle = ExtResource("9_3nh64")
 
 [node name="pinpad2" parent="GUI canvas" instance=ExtResource("9_wvw48")]
 visible = false
+circle = ExtResource("7_f3dmg")
+square = ExtResource("8_edq3k")
+triangle = ExtResource("9_3nh64")
 
 [node name="pinpad3" parent="GUI canvas" instance=ExtResource("9_wvw48")]
 visible = false
@@ -103,61 +114,61 @@ transform = Transform3D(1.11759e-08, -1.49012e-08, 0.33, 0.318756, 0.0854103, -6
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 6.83085, 0.813962, 4.78535)
 visible = false
 
-[node name="ProdMach3" type="Node3D" parent="."]
+[node name="ProdMach2" type="Node3D" parent="."]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 1.29137, 0, -2.28762)
 
-[node name="ProductionMachine2" parent="ProdMach3" instance=ExtResource("1_ks7je")]
+[node name="ProductionMachine2" parent="ProdMach2" instance=ExtResource("1_ks7je")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 7.08408, 0.48533, 5.57068)
 default_shape_to_create = 2
 default_velocity = Vector3(-0.5, 0, 0)
 error_infection = 0.5
 
-[node name="Belt3" parent="ProdMach3" instance=ExtResource("3_slbud")]
+[node name="Belt3" parent="ProdMach2" instance=ExtResource("3_slbud")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.2421, 0.195216, 5.59516)
 belt_direction = Vector3(0.5, 0, -0.866)
 
-[node name="Belt4" parent="ProdMach3" instance=ExtResource("3_slbud")]
+[node name="Belt4" parent="ProdMach2" instance=ExtResource("3_slbud")]
 transform = Transform3D(-1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 1.16324, 0.174762, 5.59516)
 belt_direction = Vector3(0.5, 0, -0.866)
 
-[node name="Bin2" parent="ProdMach3" instance=ExtResource("2_fj8l3")]
+[node name="Bin2" parent="ProdMach2" instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17232, 0.0938004, 5.56826)
 shape = "triangle"
 
-[node name="SpeedLever2" parent="ProdMach3" instance=ExtResource("6_af3e4")]
+[node name="SpeedLever2" parent="ProdMach2" instance=ExtResource("6_af3e4")]
 transform = Transform3D(1.11759e-08, -4.47035e-08, 0.33, 0.318756, 0.0854103, -1.00234e-08, -0.0854103, 0.318756, -1.49012e-08, 7.97158, 0.951893, 4.49999)
 
-[node name="wall_pinpad2" parent="ProdMach3" instance=ExtResource("10_di831")]
+[node name="wall_pinpad2" parent="ProdMach2" instance=ExtResource("10_di831")]
 transform = Transform3D(-1.49012e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -1.49012e-08, 6.7409, 0.813962, 4.67415)
 visible = false
 
-[node name="ProdMach4" type="Node3D" parent="."]
+[node name="ProdMach3" type="Node3D" parent="."]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 3.11349, 0, -0.592997)
 
-[node name="ProductionMachine2" parent="ProdMach4" instance=ExtResource("1_ks7je")]
+[node name="ProductionMachine3" parent="ProdMach3" instance=ExtResource("1_ks7je")]
 transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 7.1556, 0.48533, 5.62145)
 default_shape_to_create = 1
 default_color_to_create = 2
 default_velocity = Vector3(-0.5, 0, 0)
 error_infection = 0.5
 
-[node name="Belt3" parent="ProdMach4" instance=ExtResource("3_slbud")]
+[node name="Belt3" parent="ProdMach3" instance=ExtResource("3_slbud")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.2421, 0.195216, 5.59516)
 belt_direction = Vector3(0.5, 0, 0.866)
 
-[node name="Belt4" parent="ProdMach4" instance=ExtResource("3_slbud")]
+[node name="Belt4" parent="ProdMach3" instance=ExtResource("3_slbud")]
 transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 1.16324, 0.163681, 5.59516)
 belt_direction = Vector3(0.5, 0, 0.866)
 
-[node name="Bin2" parent="ProdMach4" instance=ExtResource("2_fj8l3")]
+[node name="Bin2" parent="ProdMach3" instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -5.04675, 0.0938004, 5.59032)
 shape = "square"
 color = "green"
 
-[node name="SpeedLever2" parent="ProdMach4" instance=ExtResource("6_af3e4")]
+[node name="SpeedLever2" parent="ProdMach3" instance=ExtResource("6_af3e4")]
 transform = Transform3D(1.49012e-08, -1.49012e-08, 0.33, 0.318756, 0.0854103, -6.61933e-09, -0.0854103, 0.318755, 1.49012e-08, 7.96754, 0.951893, 4.66076)
 
-[node name="wall_pinpad3" parent="ProdMach4" instance=ExtResource("10_di831")]
+[node name="wall_pinpad3" parent="ProdMach3" instance=ExtResource("10_di831")]
 transform = Transform3D(-2.98023e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.98023e-08, 6.75556, 0.813962, 4.74364)
 visible = false
 
@@ -166,13 +177,14 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.15909, -0.0384984, -2
 
 [connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
 [connection signal="code_entered" from="GUI canvas/pinpad2" to="." method="_on_pinpad_2_code_entered"]
+[connection signal="code_entered" from="GUI canvas/pinpad3" to="." method="_on_pinpad_3_code_entered"]
 [connection signal="timeout" from="StageTime" to="." method="_on_stage_time_timeout"]
 [connection signal="error_occured" from="ProdMach1/ProductionMachine1" to="." method="_on_production_machine_2_error_occured"]
 [connection signal="minus_one" from="ProdMach1/Bin2" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="ProdMach1/Bin2" to="." method="_on_bin_plus_one"]
-[connection signal="error_occured" from="ProdMach3/ProductionMachine2" to="." method="_on_production_machine_2_error_occured"]
+[connection signal="error_occured" from="ProdMach2/ProductionMachine2" to="." method="_on_production_machine_2_error_occured"]
+[connection signal="minus_one" from="ProdMach2/Bin2" to="." method="_on_bin_minus_one"]
+[connection signal="plus_one" from="ProdMach2/Bin2" to="." method="_on_bin_plus_one"]
+[connection signal="error_occured" from="ProdMach3/ProductionMachine3" to="." method="_on_production_machine_2_error_occured"]
 [connection signal="minus_one" from="ProdMach3/Bin2" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="ProdMach3/Bin2" to="." method="_on_bin_plus_one"]
-[connection signal="error_occured" from="ProdMach4/ProductionMachine2" to="." method="_on_production_machine_2_error_occured"]
-[connection signal="minus_one" from="ProdMach4/Bin2" to="." method="_on_bin_minus_one"]
-[connection signal="plus_one" from="ProdMach4/Bin2" to="." method="_on_bin_plus_one"]
