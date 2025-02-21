@@ -10,9 +10,18 @@ var selected_order := []
 @onready var pass_code_order_sprites = [$TextureRect2, $TextureRect3, $TextureRect4,$TextureRect5, $TextureRect6, $TextureRect7 ]
 signal code_entered(code)
 @onready var sounds = [ preload("res://Assets/Click 1.wav"), preload("res://Assets/Click 2.wav"), preload("res://Assets/Click 3.wav"), preload("res://Assets/Click 4.wav"), preload("res://Assets/Click 5.wav")]
+@export var circle = preload("res://Scenes/objects/shapes/circle.png")
+@export var square = preload("res://Scenes/objects/shapes/square.png")
+@export var triangle = preload("res://Scenes/objects/shapes/triangle.png")
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Circle_Button.texture = circle
+	$Square_Button.texture = square
+	$Triangle_Button.texture = triangle
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

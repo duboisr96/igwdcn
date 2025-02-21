@@ -6,8 +6,8 @@ extends Node3D
 
 @export var stage_time := 100 ##total time to complete stage in seconds
 @export var production_speed := 1.0 #how fast things are produced
-@export var production_min = 1 #lowest value of production
-@export var production_max = 4 #highest value of production
+@export var production_min = 1.0 #lowest value of production
+@export var production_max = 4.0 #highest value of production
 @export var angle_min_rads = 1.3 #lever
 @export var angle_max_rads = -1.3 #lever
 @export var start_hour = 7 ## start time
@@ -120,11 +120,25 @@ func _on_stage_time_timeout() -> void:
 
 func _on_pinpad_code_entered(code: Variant) -> void:
 	print('pinpad 1 code: ', code)
-	$ProductionMachine.check_error(code)
+	var prod_machine1 = get_node('ProductionMachine1')
+	if prod_machine1 == null:
+		prod_machine1 = get_node('ProdMach1').get_node('ProductionMachine1')
+	prod_machine1.check_error(code)
 
 func _on_pinpad_2_code_entered(code: Variant) -> void:
-	$ProductionMachine2.check_error(code)
+	var prod_machine2 = get_node('ProductionMachine2')
+	if prod_machine2 == null:
+		prod_machine2 = get_node('ProdMach2').get_node('ProductionMachine2')
+	prod_machine2.check_error(code)
 	print('pinpad 2 code ', code)
+
+func _on_pinpad_3_code_entered(code: Variant) -> void:
+	print('code enterrd')
+	var prod_machine3 = get_node('ProductionMachine3')
+	if prod_machine3 == null:
+		prod_machine3 = get_node('ProdMach3').get_node('ProductionMachine3')
+	prod_machine3.check_error(code)
+	print('pinpad 3 code ', code)
 
 
 func _on_production_machine_2_error_occured() -> void:
@@ -135,12 +149,21 @@ func _on_production_machine_2_error_occured() -> void:
 		#print('prod speed ' , production_speed)
 
 
-func _on_production_machine_error_occured() -> void:
+func _on_production_machine_1_error_occured() -> void:
 	print('errror 2222')
 	if production_speed < production_max:
 		$"GUI canvas/Lever Controls".vslider.value += error_speed_up
 		#print ($"GUI canvas/Lever Controls".vslider.value)
 		#print('prod speed ' , production_speed)
 
+
+
+
+
 func shape_pop() -> void:
 	quota_finished -= 1
+
+
+func _on_production_machine_3_error_occured() -> void:
+	if production_speed < production_max:
+		$"GUI canvas/Lever Controls".vslider.value += error_speed_up

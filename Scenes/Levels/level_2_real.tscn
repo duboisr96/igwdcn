@@ -32,6 +32,7 @@ script = ExtResource("1_61q48")
 angle_min_rads = -0.3
 angle_max_rads = -2.0
 quota = 75
+error_speed_up = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
