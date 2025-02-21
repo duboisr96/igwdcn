@@ -107,7 +107,7 @@ func _on_red_button_mouse_entered() -> void:
 
 
 func _on_blue_button_mouse_entered() -> void:
-	selected_order.append(('DEEP_SKY_BLUE'))
+	selected_order.append(('0484b6'))
 	pass_code_order_sprites[selected_order.size() -1 ].texture = $Blue_Button.texture
 	_play_random_sound()
 
