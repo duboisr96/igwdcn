@@ -30,7 +30,6 @@ filters = ["Cylinder"]
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f8eac"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7psjr"]
-graph_offset = Vector2(-947.452, -0.629547)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_l15tf")
 nodes/Animation/position = Vector2(-1040, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_0bu70")
@@ -53,13 +52,13 @@ node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"
 script = ExtResource("2_rf51n")
 
 [node name="Cylinder" parent="." index="0"]
-transform = Transform3D(9.74338e-10, 0.0359897, 1.29427e-09, 0.0148047, -1.53015e-09, -0.00353473, -0.00353473, 3.51165e-09, -0.0148047, 0, 0, 0)
+transform = Transform3D(-2.47979e-09, 0.0359897, 0, -0.0152208, -5.86347e-09, 0, 0, 0, 0.0152208, 0, 0, 0)
 
 [node name="Cylinder_001" parent="." index="1"]
-transform = Transform3D(9.74336e-10, 0.0359897, 1.29426e-09, 0.0148046, -1.53015e-09, -0.00353472, -0.00353472, 3.51165e-09, -0.0148046, 0, 0, -0.0303808)
+transform = Transform3D(-6.65319e-10, 0.0359897, 0, -0.0152207, -1.57316e-09, 0, 0, 0, 0.0152207, 0, 0, -0.0303808)
 
 [node name="Cylinder_002" parent="." index="2"]
-transform = Transform3D(9.7434e-10, 0.0359897, 1.29427e-09, 0.0148047, -1.53015e-09, -0.00353474, -0.00353474, 3.51165e-09, -0.0148047, 0, 0, 0.0304634)
+transform = Transform3D(-6.65323e-10, 0.0359897, 0, -0.0152208, -1.57316e-09, 0, 0, 0, 0.0152208, 0, 0, 0.0304634)
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "Cylinder_002Action_002"
