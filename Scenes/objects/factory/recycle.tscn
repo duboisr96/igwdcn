@@ -1,14 +1,39 @@
 [gd_scene load_steps=9 format=3 uid="uid://bl7rdgcu4qk44"]
 
 [ext_resource type="AudioStream" uid="uid://bgknmcwtplvfc" path="res://Assets/shred.wav" id="1_aakgm"]
+[ext_resource type="Shader" path="res://Scenes/objects/factory/conveyor_belt.gdshader" id="1_jhipt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n5oq1"]
 radius = 0.8
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfdj0"]
+render_priority = 0
+shader = ExtResource("1_jhipt")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 10.0
+shader_parameter/constant_width = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkx6v"]
-albedo_color = Color(0, 0.666667, 0, 1)
+next_pass = SubResource("ShaderMaterial_cfdj0")
+albedo_color = Color(0.715543, 1, 0.689873, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr67k"]
+render_priority = 0
+shader = ExtResource("1_jhipt")
+shader_parameter/outline_color = null
+shader_parameter/outline_width = 2.0
+shader_parameter/constant_width = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdykn"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_fr67k")
+shader = ExtResource("1_jhipt")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+shader_parameter/constant_width = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rv3lt"]
+next_pass = SubResource("ShaderMaterial_vdykn")
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j63t8"]
@@ -60,7 +85,7 @@ sides = 16
 material = SubResource("StandardMaterial3D_fkx6v")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0104285, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00267506, 0)
 radius = 0.8
 sides = 16
 material = SubResource("StandardMaterial3D_rv3lt")

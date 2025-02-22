@@ -137,7 +137,7 @@ transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 
 visible = false
 
 [node name="recycle" parent="." instance=ExtResource("13_o5q4p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.518243, 2.49979)
 
 [node name="ProductionMachine3" parent="." instance=ExtResource("1_ks7je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8405, 5.42266, 0)
