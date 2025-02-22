@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level_3_real.gd" id="1_um81g"]
-[ext_resource type="Texture2D" uid="uid://cixttg8uij6n6" path="res://Assets/tiletest.png" id="2_221xg"]
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
 [ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="3_i0ake"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
@@ -18,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="11_gkygv"]
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
+[ext_resource type="Texture2D" uid="uid://coropa33eggyx" path="res://Assets/pencil_floor_tile.png" id="18_21hfk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,13 +32,13 @@ sky = SubResource("Sky_p2cvp")
 tonemap_exposure = 1.5
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wp0fi"]
-albedo_texture = ExtResource("2_221xg")
-uv1_scale = Vector3(30.97, 30.97, 30.97)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6nls"]
 albedo_texture = ExtResource("3_i0ake")
 uv1_scale = Vector3(14.02, 14.02, 14.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0w62"]
+albedo_texture = ExtResource("18_21hfk")
+uv1_scale = Vector3(9.27, 9.27, 9.27)
 
 [node name="Level_3" type="Node3D"]
 script = ExtResource("1_um81g")
@@ -56,13 +56,6 @@ environment = SubResource("Environment_8cytq")
 transform = Transform3D(-0.824754, -0.560523, 0.0747961, 0.0456088, 0.0659017, 0.996783, -0.563649, 0.825513, -0.0287879, 15.7197, 13.3805, 0)
 light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
-
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29857, -0.123102, -2.93732)
-layers = 7
-use_collision = true
-size = Vector3(37.643, 0.2, 32.0128)
-material = SubResource("StandardMaterial3D_wp0fi")
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 3.92978, 15.3145, -15.9002)
@@ -213,6 +206,13 @@ visible = false
 
 [node name="recycle" parent="." instance=ExtResource("13_o5q4p")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.15909, -0.0384984, -2.02699)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29186, -0.246204, -5.6269)
+layers = 7
+use_collision = true
+size = Vector3(37.643, 0.2, 32.0128)
+material = SubResource("StandardMaterial3D_d0w62")
 
 [connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
 [connection signal="code_entered" from="GUI canvas/pinpad2" to="." method="_on_pinpad_2_code_entered"]

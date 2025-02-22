@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
 [ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="14_wl1do"]
-[ext_resource type="Texture2D" uid="uid://cixttg8uij6n6" path="res://Assets/tiletest.png" id="15_xo01u"]
+[ext_resource type="Texture2D" uid="uid://coropa33eggyx" path="res://Assets/pencil_floor_tile.png" id="15_opukv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,9 +33,9 @@ glow_enabled = true
 albedo_texture = ExtResource("14_wl1do")
 uv1_scale = Vector3(14.02, 14.02, 14.02)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3wp7"]
-albedo_texture = ExtResource("15_xo01u")
-uv1_scale = Vector3(30.97, 30.97, 30.97)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krkol"]
+albedo_texture = ExtResource("15_opukv")
+uv1_scale = Vector3(9.27, 9.27, 9.27)
 
 [node name="Level_2" type="Node3D" groups=["levels"]]
 script = ExtResource("1_61q48")
@@ -170,7 +170,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29186, -0.246204, -5.6269)
 layers = 7
 use_collision = true
 size = Vector3(37.643, 0.2, 32.0128)
-material = SubResource("StandardMaterial3D_k3wp7")
+material = SubResource("StandardMaterial3D_krkol")
 
 [connection signal="error_occured" from="ProductionMachine1" to="." method="_on_production_machine_error_occured"]
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]

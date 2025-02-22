@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
 [ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="14_3y7w1"]
-[ext_resource type="Texture2D" uid="uid://cixttg8uij6n6" path="res://Assets/tiletest.png" id="15_x3i4o"]
+[ext_resource type="Texture2D" uid="uid://coropa33eggyx" path="res://Assets/pencil_floor_tile.png" id="15_opygj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yq5cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,11 +31,11 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ol6w5"]
 albedo_texture = ExtResource("14_3y7w1")
-uv1_scale = Vector3(14.02, 14.02, 14.02)
+uv1_scale = Vector3(4.355, 4.355, 4.355)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0xlg"]
-albedo_texture = ExtResource("15_x3i4o")
-uv1_scale = Vector3(30.97, 30.97, 30.97)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui7gq"]
+albedo_texture = ExtResource("15_opygj")
+uv1_scale = Vector3(36.525, 36.525, 36.525)
 
 [node name="Level_1" type="Node3D" groups=["levels"]]
 script = ExtResource("1_moevi")
@@ -146,7 +146,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29186, -0.246204, -5.6269)
 layers = 7
 use_collision = true
 size = Vector3(37.643, 0.2, 32.0128)
-material = SubResource("StandardMaterial3D_m0xlg")
+material = SubResource("StandardMaterial3D_ui7gq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66759, 1.10796, -0.120267)
