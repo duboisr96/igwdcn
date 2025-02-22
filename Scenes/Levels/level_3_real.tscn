@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dco7ge6wv3vwt"]
+[gd_scene load_steps=24 format=3 uid="uid://dco7ge6wv3vwt"]
 
 [ext_resource type="PackedScene" uid="uid://dp3qifyfd544h" path="res://Scenes/objects/factory/production_machine.tscn" id="1_ks7je"]
 [ext_resource type="Script" path="res://Scenes/Levels/level_3_real.gd" id="1_um81g"]
+[ext_resource type="Texture2D" uid="uid://cixttg8uij6n6" path="res://Assets/tiletest.png" id="2_221xg"]
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
+[ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="3_i0ake"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
 [ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
@@ -30,6 +32,14 @@ sky = SubResource("Sky_p2cvp")
 tonemap_exposure = 1.5
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wp0fi"]
+albedo_texture = ExtResource("2_221xg")
+uv1_scale = Vector3(30.97, 30.97, 30.97)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6nls"]
+albedo_texture = ExtResource("3_i0ake")
+uv1_scale = Vector3(14.02, 14.02, 14.02)
+
 [node name="Level_3" type="Node3D"]
 script = ExtResource("1_um81g")
 production_speed = 0.5
@@ -43,7 +53,7 @@ error_speed_up = 3
 environment = SubResource("Environment_8cytq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.824754, -0.560523, 0.0747961, 0.0456088, 0.0659017, 0.996783, -0.563649, 0.825513, -0.0287879, 15.7197, 13.3805, 0)
 light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
@@ -52,6 +62,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29857, -0.123102, -2.93732)
 layers = 7
 use_collision = true
 size = Vector3(37.643, 0.2, 32.0128)
+material = SubResource("StandardMaterial3D_wp0fi")
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 3.92978, 15.3145, -15.9002)
+layers = 7
+use_collision = true
+size = Vector3(37.643, 0.2, 38.6087)
+material = SubResource("StandardMaterial3D_d6nls")
+
+[node name="Wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 4.53116, 15.3146, 10.6636)
+layers = 7
+use_collision = true
+size = Vector3(37.643, 0.2, 38.6087)
+material = SubResource("StandardMaterial3D_d6nls")
+
+[node name="Wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 18.7489, 15.3146, 0.455732)
+layers = 7
+use_collision = true
+size = Vector3(37.643, 0.2, 38.6087)
+material = SubResource("StandardMaterial3D_d6nls")
+
+[node name="Wall4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -13.4472, 15.3146, 0.455732)
+layers = 7
+use_collision = true
+size = Vector3(37.643, 0.2, 38.6087)
+material = SubResource("StandardMaterial3D_d6nls")
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00536, -0.0231023, 2.92093)
