@@ -23,10 +23,10 @@ func _on_level_1_button_pressed():
 
 
 func _on_level_2_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_level.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_2_real.tscn")
 
 func _on_level_3_button_2_pressed():
-	print("level 3 ?")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_3_real.tscn")
 
 
 func _on_exit_button_pressed():
