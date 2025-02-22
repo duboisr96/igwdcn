@@ -5,6 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_pqc14"]
 
 [node name="FollowingCameraController" type="SpringArm3D"]
+collision_mask = 53
 shape = SubResource("SphereShape3D_pqc14")
 spring_length = 4.0
 script = ExtResource("1_1ritm")

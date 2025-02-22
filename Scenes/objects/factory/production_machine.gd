@@ -169,6 +169,9 @@ func _output_shape(shape_num, color_num) -> void:
 	#print(error_top)
 	#$steam.emitting = false
 	#await get_tree().process_frame
+	$OmniLight3D.light_energy = 2
+	var tween = create_tween()
+	tween.tween_property($OmniLight3D, 'light_energy', 0, .65 )
 	$steam.emitting = true
 	$create_sound.play()
 	#$steam.emitting = true

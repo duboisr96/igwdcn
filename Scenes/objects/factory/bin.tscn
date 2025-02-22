@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://tee8f4gof21a"]
+[gd_scene load_steps=7 format=3 uid="uid://tee8f4gof21a"]
 
 [ext_resource type="Script" path="res://Scenes/objects/factory/bin.gd" id="1_pyusl"]
 [ext_resource type="PackedScene" uid="uid://noau17asc5ir" path="res://Scenes/objects/factory/collection_bin.glb" id="2_j5lpg"]
+[ext_resource type="AudioStream" uid="uid://bf58df8tvolw1" path="res://Assets/shape_right.wav" id="3_fd0ye"]
+[ext_resource type="AudioStream" uid="uid://cto7u7njndhvb" path="res://Assets/shape_wrong.wav" id="4_sv74q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5elh5"]
 size = Vector3(1.70079, 1.18125, 1.83742)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fp2aj"]
+size = Vector3(2.4, 2.2, 2.2)
 
 [node name="Bin" type="Area3D"]
 collision_layer = 16
@@ -17,5 +22,28 @@ shape = SubResource("BoxShape3D_5elh5")
 
 [node name="collection_bin" parent="." instance=ExtResource("2_j5lpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0842578, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.632372, 0)
+light_energy = 0.0
+omni_range = 1.301
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_fd0ye")
+volume_db = -8.0
+pitch_scale = 1.5
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_sv74q")
+volume_db = -5.0
+pitch_scale = 0.9
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125308, 0.984221, 0)
+shape = SubResource("BoxShape3D_fp2aj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

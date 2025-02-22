@@ -154,6 +154,7 @@ material = SubResource("StandardMaterial3D_ui7gq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66759, 1.10796, -0.120267)
+visible = false
 
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]

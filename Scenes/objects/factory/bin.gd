@@ -17,10 +17,20 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
+	var tween = create_tween()
 	if body.is_in_group('grabbable'):
 		if body.create_shape == shape && body.create_color == color:
 			emit_signal('plus_one')
+			$OmniLight3D.light_color = Color('GREEN')
+			$OmniLight3D.light_energy = 2
 			body._que_three()
+			tween.tween_property($OmniLight3D, 'light_energy', 0, .5 )
+			$AudioStreamPlayer3D.play()
 		else:
 			emit_signal('minus_one')
+			$OmniLight3D.light_color = Color('RED')
+			$OmniLight3D.light_energy = 2
 			body._que_three()
+			tween.tween_property($OmniLight3D, 'light_energy', 0, .5 )
+			$AudioStreamPlayer3D2.play()
+						
