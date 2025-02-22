@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl7rdgcu4qk44"]
+[gd_scene load_steps=13 format=3 uid="uid://bl7rdgcu4qk44"]
 
 [ext_resource type="AudioStream" uid="uid://bgknmcwtplvfc" path="res://Assets/shred.wav" id="1_aakgm"]
 [ext_resource type="Shader" path="res://Scenes/objects/factory/conveyor_belt.gdshader" id="1_jhipt"]
@@ -11,7 +11,6 @@ render_priority = 0
 shader = ExtResource("1_jhipt")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 10.0
-shader_parameter/constant_width = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkx6v"]
 next_pass = SubResource("ShaderMaterial_cfdj0")
@@ -22,7 +21,6 @@ render_priority = 0
 shader = ExtResource("1_jhipt")
 shader_parameter/outline_color = null
 shader_parameter/outline_width = 2.0
-shader_parameter/constant_width = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vdykn"]
 render_priority = 0
@@ -30,7 +28,6 @@ next_pass = SubResource("ShaderMaterial_fr67k")
 shader = ExtResource("1_jhipt")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.0
-shader_parameter/constant_width = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rv3lt"]
 next_pass = SubResource("ShaderMaterial_vdykn")

@@ -59,8 +59,10 @@ func interact() -> void:
 	#if Input.is_action_just_pressed("unlock mouse"):
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
+	if Input.is_action_just_pressed("open_computer"):
+		_grab(grabbable_obj)
 	
-	if (Input.is_action_pressed("interact") or Input.is_action_just_pressed("open_computer")):
+	if (Input.is_action_pressed("interact") ):
 		_grab(grabbable_obj)
 		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .1 )
 	else:
@@ -239,25 +241,25 @@ func _pinpad_open() -> void:
 			
 			
 	elif interacted_obj != null:
-		#print('wrong loop')
-		#var gui_target = get_tree().get_nodes_in_group("control")
-		#if gui_target[1].name == 'pinpad1':
-			#gui_target[1].hide()
-			##gui_target[0].grab_focus()
-			#interacted_obj = null
-			#gui_target[1].MOUSE_FILTER_IGNORE
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		#if gui_target[2].name == 'pinpad2':
-			#gui_target[2].hide()
-			##gui_target[0].grab_focus()
-			#interacted_obj = null
-			#gui_target[2].MOUSE_FILTER_IGNORE
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		#if gui_target[3].name == 'pinpad3':
-			#gui_target[3].hide()
-			##gui_target[0].grab_focus()
-			#interacted_obj = null
-			#gui_target[3].MOUSE_FILTER_IGNORE
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		print('wrong loop')
+		var gui_target = get_tree().get_nodes_in_group("control")
+		if gui_target[1].name == 'pinpad1':
+			gui_target[1].hide()
+			#gui_target[0].grab_focus()
+			interacted_obj = null
+			gui_target[1].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if gui_target[2].name == 'pinpad2':
+			gui_target[2].hide()
+			#gui_target[0].grab_focus()
+			interacted_obj = null
+			gui_target[2].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if gui_target[3].name == 'pinpad3':
+			gui_target[3].hide()
+			#gui_target[0].grab_focus()
+			interacted_obj = null
+			gui_target[3].MOUSE_FILTER_IGNORE
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		speed_modifier = 1
 	pass

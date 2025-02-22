@@ -47,7 +47,7 @@ quota = 35
 environment = SubResource("Environment_8cytq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.879084, -0.472569, -0.0623615, -0.0742793, 0.00658081, 0.997216, -0.470843, 0.881269, -0.0408872, 0, 14.3313, 0)
+transform = Transform3D(-0.879084, -0.472569, -0.0623615, -0.0742793, 0.00658079, 0.997216, -0.470843, 0.881269, -0.0408872, 0, 2.61734, 0)
 light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
@@ -103,7 +103,7 @@ visible = false
 [node name="StageTime" type="Timer" parent="."]
 
 [node name="Belt2" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842766, 0.085866, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479999, 0.258493, 0)
 belt_direction = Vector3(1, 0, 0)
 
 [node name="wall_pinpad1" parent="." instance=ExtResource("10_di831")]
@@ -147,6 +147,9 @@ layers = 7
 use_collision = true
 size = Vector3(37.643, 0.2, 32.0128)
 material = SubResource("StandardMaterial3D_m0xlg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66759, 1.10796, -0.120267)
 
 [connection signal="error_occured" from="ProductionMachine1" to="." method="_on_production_machine_error_occured"]
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
