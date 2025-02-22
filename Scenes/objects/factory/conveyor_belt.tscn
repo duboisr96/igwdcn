@@ -52,13 +52,13 @@ node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"
 script = ExtResource("2_rf51n")
 
 [node name="Cylinder" parent="." index="0"]
-transform = Transform3D(-2.47979e-09, 0.0359897, 0, -0.0152208, -5.86347e-09, 0, 0, 0, 0.0152208, 0, 0, 0)
+transform = Transform3D(1.14914e-09, 0.0359897, 0, -0.0147153, 2.6269e-09, 0.00389015, 0.00389015, -6.94452e-10, 0.0147153, 0, 0, 0)
 
 [node name="Cylinder_001" parent="." index="1"]
-transform = Transform3D(-6.65319e-10, 0.0359897, 0, -0.0152207, -1.57316e-09, 0, 0, 0, 0.0152207, 0, 0, -0.0303808)
+transform = Transform3D(1.14913e-09, 0.0359897, 0, -0.0147152, 2.6269e-09, 0.00389013, 0.00389013, -6.94452e-10, 0.0147152, 0, 0, -0.0303808)
 
 [node name="Cylinder_002" parent="." index="2"]
-transform = Transform3D(-6.65323e-10, 0.0359897, 0, -0.0152208, -1.57316e-09, 0, 0, 0, 0.0152208, 0, 0, 0.0304634)
+transform = Transform3D(1.14914e-09, 0.0359897, 0, -0.0147153, 2.6269e-09, 0.00389015, 0.00389015, -6.94452e-10, 0.0147153, 0, 0, 0.0304634)
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "Cylinder_002Action_002"

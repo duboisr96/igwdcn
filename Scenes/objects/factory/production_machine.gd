@@ -1,7 +1,7 @@
 extends StaticBody3D
 
 const default_shape_array := ['circle', 'square', 'triangle']
-const default_color_array := ['DEEP_SKY_BLUE', 'RED', 'GREEN']
+const default_color_array := ['0484b6', 'RED', 'GREEN']
 
 
 @export var shape_scene: PackedScene
