@@ -31,7 +31,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdjcy"]
 albedo_texture = ExtResource("14_wl1do")
-uv1_scale = Vector3(14.02, 14.02, 14.02)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krkol"]
 albedo_texture = ExtResource("15_opukv")
@@ -81,7 +80,7 @@ stream = ExtResource("11_gkygv")
 autoplay = true
 
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
-transform = Transform3D(3.81448e-11, 1.09278e-08, -0.25, 0.249998, -0.000872649, 0, -0.000872651, -0.249998, -1.09279e-08, -6.5297, 0.843469, 1.01241)
+transform = Transform3D(4.7767e-16, 1.09278e-08, -0.25, 0.25, -1.09278e-08, 0, -1.09278e-08, -0.25, -1.09278e-08, -6.5297, 0.843469, 1.01241)
 
 [node name="GUI canvas" type="CanvasLayer" parent="."]
 
@@ -135,7 +134,7 @@ visible = false
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
 
 [node name="SpeedLever2" parent="." instance=ExtResource("6_af3e4")]
-transform = Transform3D(-0.026795, 0.1, 0.38637, 0.38637, 0.103528, -3.80129e-09, -0.1, 0.373205, -0.103528, 8.07474, 0.952913, 4.24607)
+transform = Transform3D(-4.52533e-09, 1.68888e-08, 0.4, 0.38637, 0.103528, 0, -0.103528, 0.38637, -1.74845e-08, 8.07474, 0.952913, 4.24607)
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 3.92978, 15.3145, -6.01611)
