@@ -51,7 +51,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="BG/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Level Select"
+text = "Availability"
 
 [node name="MarginContainer" type="MarginContainer" parent="BG/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -77,21 +77,21 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 35
-text = "Level 1"
+text = "1st Shift (easy)"
 
 [node name="Level2Button" type="Button" parent="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 35
-text = "Level 2"
+text = "2nd Shift (medium)"
 
 [node name="Level3Button2" type="Button" parent="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 35
-text = "Level 3"
+text = "3rd Shift (hard)"
 
 [node name="MarginContainer2" type="MarginContainer" parent="BG/VBoxContainer"]
 layout_mode = 2

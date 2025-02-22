@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
+[ext_resource type="AudioStream" uid="uid://bwwwunge6krdn" path="res://Assets/idk.wav" id="6_75yce"]
 [ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
 [ext_resource type="PackedScene" uid="uid://bxgwyoa86dshf" path="res://Scenes/gui/lever_controls.tscn" id="7_w5vxh"]
 [ext_resource type="PackedScene" uid="uid://cqy7a4ltv7ood" path="res://Scenes/gui/player_gui.tscn" id="8_756vi"]
 [ext_resource type="PackedScene" uid="uid://ch6ciytfbiypn" path="res://Scenes/gui/pinpad.tscn" id="9_wvw48"]
 [ext_resource type="PackedScene" uid="uid://bj4rgdb26x477" path="res://Scenes/objects/factory/wall_pinpad.tscn" id="10_di831"]
-[ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="11_gkygv"]
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
 [ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="14_wl1do"]
@@ -34,14 +34,17 @@ albedo_texture = ExtResource("14_wl1do")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krkol"]
 albedo_texture = ExtResource("15_opukv")
-uv1_scale = Vector3(9.27, 9.27, 9.27)
+uv1_scale = Vector3(15, 15, 15)
 
 [node name="Level_2" type="Node3D" groups=["levels"]]
 script = ExtResource("1_61q48")
 angle_min_rads = -0.3
 angle_max_rads = -2.0
-quota = 75
-error_speed_up = 5
+start_hour = 11
+end_hour = 19
+quota = 85
+wrong_penalty = 7.0
+error_speed_up = 7
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8cytq")
@@ -69,14 +72,15 @@ use_collision = true
 size = Vector3(17.823, 0.2, 20.1609)
 
 [node name="Belt" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.98245, 0.254696, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.98245, 0.357896, 0)
 belt_direction = Vector3(1, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00536, -0.0231023, 2.92093)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("11_gkygv")
+stream = ExtResource("6_75yce")
+volume_db = -8.0
 autoplay = true
 
 [node name="SpeedLever" parent="." instance=ExtResource("6_af3e4")]
@@ -102,7 +106,7 @@ visible = false
 [node name="StageTime" type="Timer" parent="."]
 
 [node name="Belt2" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742287, 0.243334, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742287, 0.346534, 0)
 belt_direction = Vector3(1, 0, 0)
 
 [node name="ProductionMachine2" parent="." instance=ExtResource("1_ks7je")]
@@ -111,16 +115,17 @@ default_shape_to_create = 1
 default_velocity = Vector3(-0.5, 0, 0)
 
 [node name="Belt3" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.43842, 0.195216, 5.17268)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.43842, 0.298416, 5.17268)
 belt_direction = Vector3(-1, 0, 0)
 
 [node name="Belt4" parent="." instance=ExtResource("3_slbud")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.685591, 0.179175, 5.17268)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.685591, 0.282375, 5.17268)
 belt_direction = Vector3(-1, 0, 0)
 
 [node name="Bin2" parent="." instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.81059, 0.0938004, 5.26556)
 shape = "square"
+color = "0484b6"
 
 [node name="wall_pinpad1" parent="." instance=ExtResource("10_di831")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -5.76602, 0.872066, 1.04959)
@@ -131,7 +136,7 @@ transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 
 visible = false
 
 [node name="recycle" parent="." instance=ExtResource("13_o5q4p")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0937819, 0.0977232, 2.49979)
 
 [node name="SpeedLever2" parent="." instance=ExtResource("6_af3e4")]
 transform = Transform3D(-4.52533e-09, 1.68888e-08, 0.4, 0.38637, 0.103528, 0, -0.103528, 0.38637, -1.74845e-08, 8.07474, 0.952913, 4.24607)
@@ -165,7 +170,7 @@ size = Vector3(37.643, 0.2, 38.6087)
 material = SubResource("StandardMaterial3D_gdjcy")
 
 [node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29186, -0.246204, -5.6269)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.65125, -0.122149, 2.83158)
 layers = 7
 use_collision = true
 size = Vector3(37.643, 0.2, 32.0128)

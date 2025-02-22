@@ -16,8 +16,8 @@ extends Node3D
 @export var wrong_penalty = 5.0
 @export var error_speed_up = 10
 
-var audio_pitch_min = 0.7
-var audio_pitch_max = 1.3
+var audio_pitch_min = .6
+var audio_pitch_max = 1.35
 
 
 @onready var player_gui = $"GUI canvas/PlayerGUI"
@@ -113,8 +113,14 @@ func _keep_score() -> void:
 func _on_stage_time_timeout() -> void:
 	if quota_finished!=quota:
 		print('game over') 
+		var gameover = load("res://Scenes/Menus/game_over.tscn").instantiate()
+		get_tree().current_scene.add_child(gameover)
+
 	else:
 		print ("you've won")
+		var gameover = load("res://Scenes/Menus/win_screen.tscn").instantiate()
+		get_tree().current_scene.add_child(gameover)
+
 	pass # Replace with function body.
 
 
@@ -156,6 +162,12 @@ func _on_production_machine_1_error_occured() -> void:
 		#print ($"GUI canvas/Lever Controls".vslider.value)
 		#print('prod speed ' , production_speed)
 
+func _on_production_machine_error_occured() -> void:
+	print('errror 2222')
+	if production_speed < production_max:
+		$"GUI canvas/Lever Controls".vslider.value += error_speed_up
+		#print ($"GUI canvas/Lever Controls".vslider.value)
+		#print('prod speed ' , production_speed)
 
 
 

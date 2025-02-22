@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tee8f4gof21a" path="res://Scenes/objects/factory/bin.tscn" id="2_fj8l3"]
 [ext_resource type="Texture2D" uid="uid://bjekov57i3is4" path="res://Assets/wall texture.png" id="3_i0ake"]
 [ext_resource type="PackedScene" uid="uid://brpifkwn3qxka" path="res://Scenes/objects/factory/belt.tscn" id="3_slbud"]
+[ext_resource type="AudioStream" uid="uid://bwwwunge6krdn" path="res://Assets/idk.wav" id="4_2uic6"]
 [ext_resource type="PackedScene" uid="uid://damdyvodpy576" path="res://Scenes/Player/player.tscn" id="5_wt80w"]
 [ext_resource type="PackedScene" uid="uid://5j3763avycsn" path="res://Scenes/objects/factory/speed_lever.tscn" id="6_af3e4"]
 [ext_resource type="Texture2D" uid="uid://dkbf87d6pbdak" path="res://Assets/symbol1.png" id="7_f3dmg"]
@@ -14,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://8lhu4i8jn776" path="res://Assets/symbol3.png" id="9_3nh64"]
 [ext_resource type="PackedScene" uid="uid://ch6ciytfbiypn" path="res://Scenes/gui/pinpad.tscn" id="9_wvw48"]
 [ext_resource type="PackedScene" uid="uid://bj4rgdb26x477" path="res://Scenes/objects/factory/wall_pinpad.tscn" id="10_di831"]
-[ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="11_gkygv"]
 [ext_resource type="PackedScene" uid="uid://ix10n4xtr1t7" path="res://Scenes/Menus/pause_menu.tscn" id="11_vrxxs"]
 [ext_resource type="PackedScene" uid="uid://bl7rdgcu4qk44" path="res://Scenes/objects/factory/recycle.tscn" id="13_o5q4p"]
 [ext_resource type="Texture2D" uid="uid://coropa33eggyx" path="res://Assets/pencil_floor_tile.png" id="18_21hfk"]
@@ -39,15 +39,18 @@ grow = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0w62"]
 albedo_texture = ExtResource("18_21hfk")
-uv1_scale = Vector3(6.93, 6.93, 6.93)
+uv1_scale = Vector3(15, 15, 15)
 
 [node name="Level_3" type="Node3D"]
 script = ExtResource("1_um81g")
-production_speed = 0.5
+production_speed = 0.8
 production_min = 0.5
+production_max = 5.0
 angle_min_rads = -0.3
 angle_max_rads = -2.0
-quota = 100
+start_hour = 15
+end_hour = 23
+quota = 115
 error_speed_up = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -87,11 +90,12 @@ size = Vector3(37.643, 0.2, 38.6087)
 material = SubResource("StandardMaterial3D_d6nls")
 
 [node name="Player" parent="." instance=ExtResource("5_wt80w")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00536, -0.0231023, 2.92093)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00536, -0.0231023, -2.39629)
 base_speed = 6.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("11_gkygv")
+stream = ExtResource("4_2uic6")
+volume_db = -8.0
 autoplay = true
 
 [node name="GUI canvas" type="CanvasLayer" parent="."]
@@ -167,6 +171,7 @@ belt_direction = Vector3(0.5, 0, -0.866)
 [node name="Bin2" parent="ProdMach2" instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17232, 0.0938004, 5.56826)
 shape = "triangle"
+color = "0484b6"
 
 [node name="SpeedLever2" parent="ProdMach2" instance=ExtResource("6_af3e4")]
 transform = Transform3D(1.11759e-08, -4.47035e-08, 0.33, 0.318756, 0.0854103, -1.00234e-08, -0.0854103, 0.318756, -1.49012e-08, 7.97158, 0.951893, 4.49999)
@@ -196,7 +201,7 @@ belt_direction = Vector3(0.5, 0, 0.866)
 [node name="Bin2" parent="ProdMach3" instance=ExtResource("2_fj8l3")]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -5.04675, 0.0938004, 5.59032)
 shape = "square"
-color = "green"
+color = "GREEN"
 
 [node name="SpeedLever2" parent="ProdMach3" instance=ExtResource("6_af3e4")]
 transform = Transform3D(1.49012e-08, -1.49012e-08, 0.33, 0.318756, 0.0854103, -6.61933e-09, -0.0854103, 0.318755, 1.49012e-08, 7.96754, 0.951893, 4.66076)
