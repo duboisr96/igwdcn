@@ -167,7 +167,11 @@ func _handle_error(error_val) -> void:
 
 func _output_shape(shape_num, color_num) -> void:
 	#print(error_top)
+	#$steam.emitting = false
+	#await get_tree().process_frame
+	$steam.emitting = true
 	$create_sound.play()
+	#$steam.emitting = true
 	spin_lights()
 	var new_shape = shape_scene.instantiate()
 	new_shape.create_shape = default_shape_array[shape_num] #shape of product to be produced

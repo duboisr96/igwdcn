@@ -23,7 +23,7 @@ func _change_color():
 
 
 func _on_start_button_pressed():
-	print("start pls")
+
 	get_tree().change_scene_to_file("res://Scenes/Menus/level_select.tscn")
 
 
