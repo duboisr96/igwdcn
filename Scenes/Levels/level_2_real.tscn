@@ -42,7 +42,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 light_color = Color(0.952941, 1, 1, 1)
 shadow_enabled = true
 
-[node name="ProductionMachine" parent="." instance=ExtResource("1_ks7je")]
+[node name="ProductionMachine1" parent="." instance=ExtResource("1_ks7je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85753, 0.493694, 0)
 default_shape_to_create = 2
 default_color_to_create = 1
@@ -126,7 +126,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0384984, 2.49979)
 [node name="SpeedLever2" parent="." instance=ExtResource("6_af3e4")]
 transform = Transform3D(-0.026795, 0.1, 0.38637, 0.38637, 0.103528, -3.80129e-09, -0.1, 0.373205, -0.103528, 8.07474, 0.952913, 4.24607)
 
-[connection signal="error_occured" from="ProductionMachine" to="." method="_on_production_machine_error_occured"]
+[connection signal="error_occured" from="ProductionMachine1" to="." method="_on_production_machine_error_occured"]
 [connection signal="minus_one" from="Bin" to="." method="_on_bin_minus_one"]
 [connection signal="plus_one" from="Bin" to="." method="_on_bin_plus_one"]
 [connection signal="code_entered" from="GUI canvas/pinpad1" to="." method="_on_pinpad_code_entered"]
