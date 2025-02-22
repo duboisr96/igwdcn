@@ -19,9 +19,10 @@ signal code_entered(code)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Circle_Button.texture = circle
-	$Square_Button.texture = square
-	$Triangle_Button.texture = triangle
+	#$Circle_Button.texture = circle
+	#$Square_Button.texture = square
+	#$Triangle_Button.texture = triangle
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,50 +80,83 @@ func _boot_up() -> void:
 	#_shuffle_positions()
 
 func _play_random_sound() -> void:
-	var rand_sound := randi_range(0,4)
-	$AudioStreamPlayer2D.stream = sounds[rand_sound]
 	$AudioStreamPlayer2D.play()
 
 
-func _on_circle_button_mouse_entered() -> void:
+func _on_circle_button_pressed() -> void:
+	
+	var tween = create_tween()
+	$Circle_Button.modulate = Color('INDIGO')
+	tween.tween_property($Circle_Button, 'modulate', Color('WHITE'), 0.8)
+	
 	selected_order.append(('circle'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Circle_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Circle_Button.texture_normal
 	_play_random_sound()
 	
-func _on_square_button_mouse_entered() -> void:
+func _on_square_button_pressed() -> void:
+	
+	var tween = create_tween()
+	$Square_Button.modulate = Color('INDIGO')
+	tween.tween_property($Square_Button, 'modulate', Color('WHITE'), 0.8)
+	
 	selected_order.append(('square'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Square_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Square_Button.texture_normal
 	_play_random_sound()
 
-func _on_triangle_button_mouse_entered() -> void:
+func _on_triangle_button_pressed() -> void:
+	var tween = create_tween()
+	$Triangle_Button.modulate = Color('INDIGO')
+	tween.tween_property($Triangle_Button, 'modulate', Color('WHITE'), 0.8)
 	selected_order.append(('triangle'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Triangle_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Triangle_Button.texture_normal
 	_play_random_sound()
 
 
-func _on_red_button_mouse_entered() -> void:
+func _on_red_button_pressed() -> void:
+	var tween = create_tween()
+	$Red_Button.modulate = Color('INDIGO')
+	tween.tween_property($Red_Button, 'modulate', Color('WHITE'), 0.8)
 	selected_order.append(('RED'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Red_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Red_Button.texture_normal
 	_play_random_sound()
 
 
-func _on_blue_button_mouse_entered() -> void:
+func _on_blue_button_pressed() -> void:
+	
+	$Blue_Button.modulate = Color('INDIGO')
+	var tween = create_tween()
+	tween.tween_property($Blue_Button, 'modulate', Color('WHITE'), 0.8)
 	selected_order.append(('0484b6'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Blue_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Blue_Button.texture_normal
 	_play_random_sound()
 
 
-func _on_green_button_mouse_entered() -> void:
+func _on_green_button_pressed() -> void:
+	var tween = create_tween()
+	$Green_Button.modulate = Color('INDIGO')
+	tween.tween_property($Green_Button, 'modulate', Color('WHITE'), 0.8)
+	
 	selected_order.append(('GREEN'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Green_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Green_Button.texture_normal
 	_play_random_sound()
 
-func _on_end_button_mouse_entered() -> void:
+func _on_end_button_pressed() -> void:
+	var tween = create_tween()
+	$End_Button.modulate = Color('INDIGO')
+	tween.tween_property($End_Button, 'modulate', Color('WHITE'), 0.8)
+	
+	print('modulating')
 	selected_order.append(('End'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $End_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $End_Button.texture_normal
 	_play_random_sound()
 
-func _on_start_button_mouse_entered() -> void:
+
+func _on_start_button_pressed() -> void:
+	
+	var tween = create_tween()
+	$Start_Button.modulate = Color('INDIGO')
+	tween.tween_property($Start_Button, 'modulate', Color('WHITE'), 0.8)
+	
 	selected_order.append(('Start'))
-	pass_code_order_sprites[selected_order.size() -1 ].texture = $Start_Button.texture
+	pass_code_order_sprites[selected_order.size() -1 ].texture = $Start_Button.texture_normal
 	_play_random_sound()

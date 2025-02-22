@@ -7,6 +7,7 @@ var speed_modifier := 1.0
 
 var movement_input := Vector2.ZERO
 var is_running := false
+var computer_on := false
 #settings
 #@export var toggle_sprint := false
 
@@ -49,6 +50,7 @@ func _physics_process(_delta) -> void:
 	_hold_obj()
 	_pinpad_open()
 	_interacting()
+	
 
 
 func interact() -> void:
@@ -58,7 +60,7 @@ func interact() -> void:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	
-	if (Input.is_action_pressed("interact")):
+	if (Input.is_action_pressed("interact") or Input.is_action_just_pressed("open_computer")):
 		_grab(grabbable_obj)
 		tween.tween_property($AnimationTree, "parameters/GrabBlend/blend_amount", 1, .1 )
 	else:
@@ -160,6 +162,7 @@ func _hold_obj()  -> void:
 	
 func _interacting()  -> void:
 	#print(pulled_obj)
+	
 	if pulled_obj != null and Input.is_action_pressed("interact") and !am_interacting :
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN )
 		speed_modifier = 0
@@ -183,9 +186,10 @@ func _interacting()  -> void:
 
 func _pinpad_open() -> void:
 
-	if interacted_obj != null and Input.is_action_pressed("interact") and !am_interacting:
+	if interacted_obj != null and Input.is_action_just_pressed("open_computer") and !computer_on:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		speed_modifier = 0
+		computer_on = true
 		var gui_target = get_tree().get_nodes_in_group("control")
 		#print(gui_target)
 		if interacted_obj.name.find('1') != -1:
@@ -206,25 +210,54 @@ func _pinpad_open() -> void:
 				gui_target[3].show()
 				#gui_target[0].grab_focus()
 				gui_target[3].MOUSE_FILTER_STOP
+	elif computer_on:
+		#print('computer is on')
+		if Input.is_action_just_pressed('open_computer'):
+			print('close computer')
+			computer_on = false
+			var gui_target = get_tree().get_nodes_in_group("control")
+			if interacted_obj.name.find('1') != -1:
+				if gui_target[1].name == 'pinpad1':
+					#print('opening pinpad')
+					gui_target[1].hide()
+					#gui_target[0].grab_focus()
+					gui_target[1].MOUSE_FILTER_STOP
+			if interacted_obj.name.find('2') != -1:
+				if gui_target[2].name == 'pinpad2':
+					#print('opening pinpad')
+					gui_target[2].hide()
+					#gui_target[0].grab_focus()
+					gui_target[2].MOUSE_FILTER_STOP
+			if interacted_obj.name.find('3') != -1:
+				if gui_target[3].name == 'pinpad3':
+					#print('opening pinpad')
+					gui_target[3].hide()
+					#gui_target[0].grab_focus()
+					gui_target[3].MOUSE_FILTER_STOP
+			
+			
+			
+			
 	elif interacted_obj != null:
-		var gui_target = get_tree().get_nodes_in_group("control")
-		if gui_target[1].name == 'pinpad1':
-			gui_target[1].hide()
-			#gui_target[0].grab_focus()
-			interacted_obj = null
-			gui_target[1].MOUSE_FILTER_IGNORE
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if gui_target[2].name == 'pinpad2':
-			gui_target[2].hide()
-			#gui_target[0].grab_focus()
-			interacted_obj = null
-			gui_target[2].MOUSE_FILTER_IGNORE
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if gui_target[3].name == 'pinpad3':
-			gui_target[3].hide()
-			#gui_target[0].grab_focus()
-			interacted_obj = null
-			gui_target[3].MOUSE_FILTER_IGNORE
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#print('wrong loop')
+		#var gui_target = get_tree().get_nodes_in_group("control")
+		#if gui_target[1].name == 'pinpad1':
+			#gui_target[1].hide()
+			##gui_target[0].grab_focus()
+			#interacted_obj = null
+			#gui_target[1].MOUSE_FILTER_IGNORE
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#if gui_target[2].name == 'pinpad2':
+			#gui_target[2].hide()
+			##gui_target[0].grab_focus()
+			#interacted_obj = null
+			#gui_target[2].MOUSE_FILTER_IGNORE
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#if gui_target[3].name == 'pinpad3':
+			#gui_target[3].hide()
+			##gui_target[0].grab_focus()
+			#interacted_obj = null
+			#gui_target[3].MOUSE_FILTER_IGNORE
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		speed_modifier = 1
 	pass
