@@ -112,3 +112,5 @@ spot_angle_attenuation = 0.73204
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 1.00385, 1.2074, 0.23838)
 texture = ExtResource("8_q5n17")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
