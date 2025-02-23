@@ -26,228 +26,270 @@ script = ExtResource("1_pgvvc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.041
-anchor_top = -0.051
-anchor_right = 1.055
-anchor_bottom = 1.102
-offset_left = 0.232002
-offset_top = 0.0480003
-offset_right = -0.360107
-offset_bottom = -0.0960083
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_a3e1x")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.093
-anchor_top = 0.096
-anchor_right = 0.911
+anchor_left = 0.103
+anchor_top = 0.066
+anchor_right = 0.909
 anchor_bottom = 0.827
-offset_left = -0.136002
-offset_top = -0.208
-offset_right = -0.472046
-offset_bottom = 0.104004
+offset_left = 44.014
+offset_top = 43.698
+offset_right = -46.1581
+offset_bottom = -45.769
 color = Color(0.0313726, 0.0156863, 0.847059, 1)
 
-[node name="Circle_Button" type="TextureButton" parent="."]
+[node name="Circle_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.138
-anchor_top = 0.134
-anchor_right = 0.225
-anchor_bottom = 0.289
-offset_left = 0.0239868
-offset_top = 0.167999
-offset_right = 99.8
-offset_bottom = 99.728
+anchor_left = 0.17
+anchor_top = 0.183
+anchor_right = 0.253
+anchor_bottom = 0.327
+offset_left = -0.540024
+offset_top = -0.201004
+offset_right = 104.284
+offset_bottom = 107.576
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("2_nrle8")
 
-[node name="Square_Button" type="TextureButton" parent="."]
+[node name="Square_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.477
-anchor_top = 0.133
+anchor_left = 0.479
+anchor_top = 0.181
 anchor_right = 0.563
 anchor_bottom = 0.287
-offset_left = -0.504028
-offset_top = -0.183998
-offset_right = 100.424
-offset_bottom = 100.024
+offset_left = -0.498047
+offset_top = 0.292999
+offset_right = 102.954
+offset_bottom = 136.357
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("3_cnolb")
 
-[node name="Triangle_Button" type="TextureButton" parent="."]
+[node name="Triangle_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.798
-anchor_top = 0.116
-anchor_right = 0.885
-anchor_bottom = 0.27
-offset_left = -0.296021
-offset_top = -0.167999
-offset_right = 99.48
-offset_bottom = 100.04
+anchor_left = 0.772
+anchor_top = 0.167
+anchor_right = 0.855
+anchor_bottom = 0.311
+offset_left = -0.264099
+offset_top = -0.249008
+offset_right = 104.56
+offset_bottom = 107.429
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_x6oii")
 
-[node name="Red_Button" type="TextureButton" parent="."]
+[node name="Red_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.136
-anchor_top = 0.67
-anchor_right = 0.223
-anchor_bottom = 0.824
-offset_left = 0.327988
-offset_top = -0.160004
-offset_right = 100.104
-offset_bottom = 100.048
+anchor_left = 0.17
+anchor_top = 0.614
+anchor_right = 0.253
+anchor_bottom = 0.758
+offset_left = 0.459991
+offset_top = -0.15802
+offset_right = 105.284
+offset_bottom = 107.52
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("6_1dlyu")
 
-[node name="Blue_Button" type="TextureButton" parent="."]
+[node name="Blue_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.483
-anchor_top = 0.651
-anchor_right = 0.569
-anchor_bottom = 0.806
-offset_left = -0.416016
-offset_top = 0.151978
-offset_right = 100.512
-offset_bottom = 99.712
+anchor_left = 0.484
+anchor_top = 0.631
+anchor_right = 0.556
+anchor_bottom = 0.775
+offset_left = 0.191956
+offset_top = 0.142975
+offset_right = 118.788
+offset_bottom = 107.92
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("7_fvm0n")
 
-[node name="Green_Button" type="TextureButton" parent="."]
+[node name="Green_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.791
-anchor_top = 0.654
-anchor_right = 0.878
-anchor_bottom = 0.809
-offset_left = -0.231995
-offset_top = 0.207977
-offset_right = 99.5439
-offset_bottom = 99.768
+anchor_left = 0.765
+anchor_top = 0.634
+anchor_right = 0.848
+anchor_bottom = 0.778
+offset_left = 0.569946
+offset_top = -0.0980225
+offset_right = 105.394
+offset_bottom = 107.679
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("8_70140")
 
-[node name="End_Button" type="TextureButton" parent="."]
+[node name="End_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.791
-anchor_top = 0.404
-anchor_right = 0.878
-anchor_bottom = 0.554
-offset_left = -0.231995
-offset_top = -2.79202
-offset_right = 99.5439
-offset_bottom = 100.008
+anchor_left = 0.765
+anchor_top = 0.413
+anchor_right = 0.848
+anchor_bottom = 0.557
+offset_left = 0.569946
+offset_top = -0.0110168
+offset_right = 105.394
+offset_bottom = 107.271
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("9_f58fl")
 
-[node name="Start_Button" type="TextureButton" parent="."]
+[node name="Start_Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.136
-anchor_top = 0.4
-anchor_right = 0.223
-anchor_bottom = 0.554
-offset_left = 0.327988
-offset_top = -0.200012
-offset_right = 100.104
-offset_bottom = 100.008
+anchor_left = 0.168
+anchor_top = 0.413
+anchor_right = 0.251
+anchor_bottom = 0.557
+offset_left = -0.0160217
+offset_top = -0.0110168
+offset_right = 104.808
+offset_bottom = 107.667
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("10_f14ix")
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.357
+anchor_top = 0.441
+anchor_right = 0.392
+anchor_bottom = 0.5
+offset_left = 0.465973
+offset_top = 0.072998
+offset_right = 0.0359497
+offset_bottom = 2.138
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.411
+anchor_top = 0.441
+anchor_right = 0.446
+anchor_bottom = 0.5
+offset_left = 0.317932
+offset_top = 0.072998
+offset_right = -0.112
+offset_bottom = 2.138
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.468
+anchor_top = 0.441
+anchor_right = 0.5
+anchor_bottom = 0.494
+offset_left = 0.383911
+offset_top = 0.072998
+offset_right = 3.84998
+offset_bottom = 6.62
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.529
+anchor_top = 0.441
+anchor_right = 0.566
+anchor_bottom = 0.494
+offset_left = -0.598083
+offset_top = 0.072998
+offset_right = -3.44202
+offset_bottom = 6.62
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.584
+anchor_top = 0.441
+anchor_right = 0.619
+anchor_bottom = 0.5
+offset_left = -0.00805664
+offset_top = 0.072998
+offset_right = -0.328064
+offset_bottom = 2.138
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="TextureRect"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.639
+anchor_top = 0.441
+anchor_right = 0.674
+anchor_bottom = 0.5
+offset_left = 0.581848
+offset_top = 0.072998
+offset_right = 0.151855
+offset_bottom = 2.138
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.135
+anchor_top = 0.123
+anchor_right = 0.873
+anchor_bottom = 0.766
+offset_left = 0.62999
+offset_top = 0.118996
+offset_right = 0.273926
+offset_bottom = -0.202026
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D2" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.034
+anchor_top = 0.515
+anchor_right = 0.137
+anchor_bottom = 0.665
+offset_left = 0.0919991
+offset_top = -0.205017
+offset_right = 870.106
+offset_bottom = 887.745
+rotation = -0.0872665
+scale = Vector2(0.12, 0.123)
+texture = ExtResource("13_khka6")
+
+[node name="Sprite2D3" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.834
+anchor_top = 0.532
+anchor_right = 0.955
+anchor_bottom = 0.736
+offset_left = 13.4921
+offset_top = 0.0960083
+offset_right = 860.79
+offset_bottom = 847.708
+rotation = 0.0872665
+scale = Vector2(0.1525, 0.1525)
+texture = ExtResource("14_i2ere")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_8dj52")
 volume_db = 15.0
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.344
-anchor_top = 0.432
-anchor_right = 0.378
-anchor_bottom = 0.494
-offset_left = -0.288025
-offset_top = 0.0639954
-offset_right = 0.543976
-offset_bottom = -0.112
-expand_mode = 1
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.403
-anchor_top = 0.432
-anchor_right = 0.437
-anchor_bottom = 0.494
-offset_left = -0.256042
-offset_top = 0.0639954
-offset_right = 0.575989
-offset_bottom = -0.112
-expand_mode = 1
-
-[node name="TextureRect4" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.465
-anchor_top = 0.432
-anchor_right = 0.5
-anchor_bottom = 0.494
-offset_left = 0.319946
-offset_top = 0.0639954
-offset_bottom = -0.112
-expand_mode = 1
-
-[node name="TextureRect5" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.531
-anchor_top = 0.432
-anchor_right = 0.566
-anchor_bottom = 0.494
-offset_left = 0.287964
-offset_top = 0.0639954
-offset_right = -0.0320435
-offset_bottom = -0.112
-expand_mode = 1
-
-[node name="TextureRect6" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.592
-anchor_top = 0.432
-anchor_right = 0.627
-anchor_bottom = 0.494
-offset_left = 0.0159912
-offset_top = 0.0639954
-offset_right = -0.304016
-offset_bottom = -0.112
-expand_mode = 1
-
-[node name="TextureRect7" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.545098)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.653
-anchor_top = 0.432
-anchor_right = 0.687
-anchor_bottom = 0.494
-offset_left = -0.256042
-offset_top = 0.0639954
-offset_right = 0.575928
-offset_bottom = -0.112
-expand_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(599, 326)
@@ -258,37 +300,13 @@ offset = Vector2(-30, -50)
 region_enabled = true
 region_rect = Rect2(101.3, 139.6, 358.725, 614.785)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 103.0
-offset_top = 58.0
-offset_right = -102.0
-offset_bottom = -111.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(59, 364)
-rotation = -0.0872665
-scale = Vector2(0.13, 0.133)
-texture = ExtResource("13_khka6")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(1075, 523)
-rotation = 0.0872665
-scale = Vector2(0.1525, 0.1525)
-texture = ExtResource("14_i2ere")
-
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="Circle_Button" to="." method="_on_circle_button_pressed"]
-[connection signal="pressed" from="Square_Button" to="." method="_on_square_button_pressed"]
-[connection signal="pressed" from="Triangle_Button" to="." method="_on_triangle_button_pressed"]
-[connection signal="pressed" from="Red_Button" to="." method="_on_red_button_pressed"]
-[connection signal="pressed" from="Blue_Button" to="." method="_on_blue_button_pressed"]
-[connection signal="pressed" from="Green_Button" to="." method="_on_green_button_pressed"]
-[connection signal="pressed" from="End_Button" to="." method="_on_end_button_pressed"]
-[connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TextureRect/Circle_Button" to="." method="_on_circle_button_pressed"]
+[connection signal="pressed" from="TextureRect/Square_Button" to="." method="_on_square_button_pressed"]
+[connection signal="pressed" from="TextureRect/Triangle_Button" to="." method="_on_triangle_button_pressed"]
+[connection signal="pressed" from="TextureRect/Red_Button" to="." method="_on_red_button_pressed"]
+[connection signal="pressed" from="TextureRect/Blue_Button" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="TextureRect/Green_Button" to="." method="_on_green_button_pressed"]
+[connection signal="pressed" from="TextureRect/End_Button" to="." method="_on_end_button_pressed"]
+[connection signal="pressed" from="TextureRect/Start_Button" to="." method="_on_start_button_pressed"]

@@ -57,12 +57,12 @@ shadow_enabled = true
 [node name="ProductionMachine1" parent="." instance=ExtResource("1_ks7je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85753, 0.493694, 0)
 default_shape_to_create = 2
-default_color_to_create = 1
+default_color_to_create = 2
 
 [node name="Bin" parent="." instance=ExtResource("2_fj8l3")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.31576, 0.119575, 0.00339197)
 shape = "triangle"
-color = "RED"
+color = "GREEN"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00671387, -0.123102, -2.68958)

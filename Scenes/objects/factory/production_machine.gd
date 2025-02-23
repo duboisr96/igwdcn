@@ -200,8 +200,10 @@ func _increase_error() -> void:
 func check_error(code) -> void:
 	#print('checking error')
 	if code[0] == 'Start':
+	
 		#print(default_color_array[default_color_to_create])
 		if code[1] == default_color_array[default_color_to_create]:
+			
 			if code[2] == default_shape_array[default_shape_to_create]:
 				if not error_log.is_empty():
 					if code[3] == default_color_array[error_log[1]]:
@@ -211,6 +213,24 @@ func check_error(code) -> void:
 								$code_correct_sound.play()
 								error_top = 99.0
 								error_amount = 0
+							else:
+								error_top -=20
+								$code_incorrect_sound.play()
+						else:
+							error_top -=20
+							$code_incorrect_sound.play()
+					else:
+						error_top -=20
+						$code_incorrect_sound.play()
+				else:
+					error_top -=20
+					$code_incorrect_sound.play()
+			else:
+				error_top -=20
+				$code_incorrect_sound.play()
+		else:
+			error_top -=20
+			$code_incorrect_sound.play()
 	else:
 		error_top -=20
 		$code_incorrect_sound.play()

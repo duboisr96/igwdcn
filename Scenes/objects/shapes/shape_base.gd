@@ -103,8 +103,8 @@ func _check_overlapping_areas() -> void:
 			#queue_free()
 		if area.name.begins_with("recycle"):
 			var sound = area.get_node('shred')
-			var sparks = area.get_node('sparks') as GPUParticles3D
-			sparks.emitting = true
+			#var sparks = area.get_node('sparks') as GPUParticles3D
+			#sparks.emitting = true
 			sound.play()
 			queue_free()
 			#break

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bd8vblnpn2wrc"
+path="res://.godot/imported/yay_real (1).wav-51e52054bf2b5a4dd45642a01f4b54e5.sample"
+
+[deps]
+
+source_file="res://Assets/yay_real (1).wav"
+dest_files=["res://.godot/imported/yay_real (1).wav-51e52054bf2b5a4dd45642a01f4b54e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

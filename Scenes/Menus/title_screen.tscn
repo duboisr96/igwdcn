@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct5qrj8cju4wf"]
+[gd_scene load_steps=5 format=3 uid="uid://ct5qrj8cju4wf"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/title_screen.gd" id="1_uxwna"]
 [ext_resource type="Texture2D" uid="uid://c07pgvoxd48t6" path="res://Scenes/Menus/I Guess We Doin Circles Now-Photoroom.png" id="2_xkscj"]
+[ext_resource type="AudioStream" uid="uid://ci5slqvc5lyx5" path="res://Assets/mainmenu.wav" id="3_ay7r1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05dc2"]
 bg_color = Color(0.95158, 0.95158, 0.95158, 1)
@@ -78,6 +79,10 @@ text = "Quit
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ay7r1")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

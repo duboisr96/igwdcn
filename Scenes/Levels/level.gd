@@ -111,7 +111,7 @@ func _keep_score() -> void:
 	pass
 
 func _on_stage_time_timeout() -> void:
-	if quota_finished!=quota:
+	if quota_finished <= quota:
 		print('game over') 
 		var gameover = load("res://Scenes/Menus/game_over.tscn").instantiate()
 		get_tree().current_scene.add_child(gameover)

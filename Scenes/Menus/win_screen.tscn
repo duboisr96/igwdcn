@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4sodkuphmurh"]
+[gd_scene load_steps=7 format=3 uid="uid://4sodkuphmurh"]
 
-[ext_resource type="Texture2D" uid="uid://j2fiuldefsth" path="res://Scenes/Menus/images-w1400.png" id="1_ptw2w"]
 [ext_resource type="Script" path="res://Scenes/Menus/win_screen.gd" id="1_ys0eo"]
+[ext_resource type="AudioStream" uid="uid://bd8vblnpn2wrc" path="res://Assets/yay_real (1).wav" id="3_eqcjr"]
 [ext_resource type="Script" path="res://Scenes/Menus/gpu_particles_2d.gd" id="3_m25bh"]
-[ext_resource type="AudioStream" uid="uid://qxsoif13pbp1" path="res://Scenes/Menus/yay-6326.mp3" id="4_bjktn"]
 
 [sub_resource type="Gradient" id="Gradient_h56w4"]
 
@@ -29,15 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_ptw2w")
+color = Color(0.585062, 0.585062, 0.585062, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
@@ -63,7 +54,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.870109, 0.771298, 0.0531457, 1)
 theme_override_font_sizes/font_size = 50
-text = "Congratulations you won"
+text = "Shift completed successfully!"
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.870109, 0.771298, 0.0531457, 1)
+theme_override_font_sizes/font_size = 50
+text = "See you tomorrow"
+horizontal_alignment = 1
 
 [node name="ReferenceRect" type="ReferenceRect" parent="ColorRect/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
@@ -88,7 +86,8 @@ trail_enabled = true
 script = ExtResource("3_m25bh")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_bjktn")
+stream = ExtResource("3_eqcjr")
 volume_db = -10.541
+pitch_scale = 1.38
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
