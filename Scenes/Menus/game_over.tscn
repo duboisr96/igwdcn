@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xwm1p3fl8ary"]
+[gd_scene load_steps=3 format=3 uid="uid://xwm1p3fl8ary"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/game_over.gd" id="1_ijw56"]
+[ext_resource type="Texture2D" uid="uid://j7q7ktuxd73w" path="res://Assets/pink_slip.png" id="2_qmedq"]
 
 [node name="GameOver" type="CanvasLayer"]
 layer = 10
@@ -13,6 +14,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.735
+anchor_bottom = 0.664
+offset_left = 315.0
+offset_top = 20.0
+offset_right = 0.279968
+offset_bottom = -0.272034
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qmedq")
+expand_mode = 1
 
 [node name="Margin" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1

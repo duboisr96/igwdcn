@@ -195,7 +195,7 @@ transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 7.2421
 belt_direction = Vector3(0.5, 0, 0.866)
 
 [node name="Belt4" parent="ProdMach3" instance=ExtResource("3_slbud")]
-transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 1.88815, 0.404584, 5.58722)
+transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 1.88815, 0.392979, 5.58722)
 belt_direction = Vector3(0.5, 0, 0.866)
 
 [node name="Bin2" parent="ProdMach3" instance=ExtResource("2_fj8l3")]

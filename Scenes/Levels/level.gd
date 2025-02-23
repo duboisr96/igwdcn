@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 	_show_time()
 	_rotate_lever()
 	_keep_score()
-	_manual_controls()
+	#_manual_controls()
 
 
 
@@ -57,24 +57,24 @@ func _on_bin_plus_one() -> void:
 	#print('CORRECT SHAPE, ADDING TO QUOTA')
 
 
-func _manual_controls() -> void:
-	if Input.is_action_just_pressed("decrease error"):
-		for child_node in $".".get_children():
-			var child_name = child_node.name
-			if child_name.begins_with('ProductionMachine'):
-				child_node._decrease_error()
-	if Input.is_action_just_pressed("increase error"):
-		for child_node in $".".get_children():
-			var child_name = child_node.name
-			if child_name.begins_with('ProductionMachine'):
-				child_node._increase_error()
-	if Input.is_action_just_pressed("increase belt speed"):
-		production_speed += .25
-		print('belt speed is ', production_speed, ' mph')
-	if Input.is_action_just_pressed("decrease belt speed"):
-		if production_speed > .25: 
-			production_speed -= .25
-			print('belt speed is ', production_speed, ' mph')
+#func _manual_controls() -> void:
+	#if Input.is_action_just_pressed("decrease error"):
+		#for child_node in $".".get_children():
+			#var child_name = child_node.name
+			#if child_name.begins_with('ProductionMachine'):
+				#child_node._decrease_error()
+	#if Input.is_action_just_pressed("increase error"):
+		#for child_node in $".".get_children():
+			#var child_name = child_node.name
+			#if child_name.begins_with('ProductionMachine'):
+				#child_node._increase_error()
+	#if Input.is_action_just_pressed("increase belt speed"):
+		#production_speed += .25
+		#print('belt speed is ', production_speed, ' mph')
+	#if Input.is_action_just_pressed("decrease belt speed"):
+		#if production_speed > .25: 
+			#production_speed -= .25
+			#print('belt speed is ', production_speed, ' mph')
 
 func _show_time() -> void:
 	var time_left = stage_time - $StageTime.time_left
