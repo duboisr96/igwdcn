@@ -13,13 +13,27 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+
+func _input(event):
+	if event is InputEventMouseMotion and visible:
+		var mouse_movement = event.relative.y
+		if mouse_movement > 0:
+			vslider.value += 5
+		elif mouse_movement < 0:
+			vslider.value -= 5
+		vslider.value = clamp(vslider.value, vslider.min_value, vslider.max_value)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	rotate_val = vslider.value
 	#tp_mouse()
-	var current_mouse_position = get_global_mouse_position()
-	var mouse_movement = current_mouse_position.y - previous_mouse_position.y
-	var mouse_pos = get_global_mouse_position()
+	#var current_mouse_position = get_local_mouse_position()
+	#var mouse_movement = current_mouse_position.y - previous_mouse_position.y
+	#var mouse_pos = get_local_mouse_position()
+	
+	#print(mouse_movement, '   ', current_mouse_position)
 	#mouse_pos.x = clamp(mouse_pos.x, 0, DisplayServer.window_get_size().x - 10)
 	#mouse_pos.y = clamp(mouse_pos.y, 0, DisplayServer.window_get_size().y - 100)
 	##print(DisplayServer.screen_get_size(), DisplayServer.window_get_size())
@@ -27,15 +41,15 @@ func _process(delta: float) -> void:
 	
 	
 	#print(vslider.value)
-	if visible:
-		if mouse_movement >0:
-			vslider.value += 5
-			#print('up!')
-		elif mouse_movement < 0:
-			#print('down!')
-			vslider.value -= 5
-		vslider.value = clamp(vslider.value, vslider.min_value, vslider.max_value)
-		previous_mouse_position = current_mouse_position
+	#if visible:
+		#if mouse_movement >0:
+			#vslider.value += 5
+			##print('up!')
+		#elif mouse_movement < 0:
+			##print('down!')
+			#vslider.value -= 5
+		#vslider.value = clamp(vslider.value, vslider.min_value, vslider.max_value)
+		#previous_mouse_position = current_mouse_position
 
 	#if Input.is_action_pressed('interact') && visible:
 		#update_slider_value()
