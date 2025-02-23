@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 #variables
 @export var base_speed := 4.0
-@export var sprint_speed := 8.0
+#@export var sprint_speed := 8.0
 var speed_modifier := 1.0
 
 var movement_input := Vector2.ZERO
@@ -76,9 +76,9 @@ func move_logic(delta) -> void:
 	#current horizontal velocity
 	velocity = Vector3(movement_input.x,0,movement_input.y) * base_speed * speed_modifier
 	var horizontal_v = Vector2(velocity.x, velocity.z)
-	var actual_speed = sprint_speed if Input.is_action_pressed("sprint") else base_speed
-	#sprint speed
-	var is_running: bool = Input.is_action_pressed("sprint")
+	var actual_speed = base_speed
+	##sprint speed
+	#var is_running: bool = Input.is_action_pressed("sprint")
 
 	if (movement_input != Vector2.ZERO):
 		#Acceleration with input
@@ -189,11 +189,13 @@ func _interacting()  -> void:
 func _pinpad_open() -> void:
 
 	if interacted_obj != null and Input.is_action_just_pressed("open_computer") and !computer_on:
+		can_rotate = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		speed_modifier = 0
 		computer_on = true
 		var gui_target = get_tree().get_nodes_in_group("control")
 		#print(gui_target)
+		can_rotate = false
 		if interacted_obj.name.find('1') != -1:
 			if gui_target[1].name == 'pinpad1':
 				#print('opening pinpad')
@@ -213,7 +215,9 @@ func _pinpad_open() -> void:
 				#gui_target[0].grab_focus()
 				gui_target[3].MOUSE_FILTER_STOP
 	elif computer_on:
-		#print('computer is on')
+		print('computer is on')
+		can_rotate =false
+		$FollowingCameraController.can_adjust = false
 		if Input.is_action_just_pressed('open_computer'):
 			print('close computer')
 			computer_on = false
@@ -241,6 +245,8 @@ func _pinpad_open() -> void:
 			
 			
 	elif interacted_obj != null:
+		can_rotate = true
+		$FollowingCameraController.can_adjust  =true
 		print('wrong loop')
 		var gui_target = get_tree().get_nodes_in_group("control")
 		if gui_target[1].name == 'pinpad1':
