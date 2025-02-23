@@ -72,6 +72,13 @@ theme_override_constants/h_separation = 50
 theme_override_constants/v_separation = 50
 columns = 2
 
+[node name="TutorialButton" type="Button" parent="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+text = "Intern (tutorial)"
+
 [node name="Level1Button" type="Button" parent="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
@@ -111,6 +118,7 @@ text = " Exit "
 wait_time = 3.0
 autostart = true
 
+[connection signal="pressed" from="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="BG/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Level3Button2" to="." method="_on_level_3_button_2_pressed"]

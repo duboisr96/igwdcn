@@ -16,14 +16,17 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
+custom_minimum_size = Vector2(800, 600)
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.735
-anchor_bottom = 0.664
-offset_left = 315.0
-offset_top = 20.0
-offset_right = 0.279968
-offset_bottom = -0.272034
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qmedq")
@@ -31,48 +34,40 @@ expand_mode = 1
 
 [node name="Margin" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.738
+anchor_right = 0.5
+anchor_bottom = 0.738
+offset_left = -312.0
+offset_top = -68.224
+offset_right = 312.0
+offset_bottom = 68.776
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Margin"]
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="ColorRect/Margin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="ColorRect/Margin/VBoxContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Margin"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.203922, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Game Over... everything went wrong"
+theme_override_constants/separation = 250
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Margin/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Retry" type="Button" parent="ColorRect/Margin/VBoxContainer/HBoxContainer"]
+[node name="Retry" type="Button" parent="ColorRect/Margin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
 text = "  Retry  "
 
-[node name="Exit" type="Button" parent="ColorRect/Margin/VBoxContainer/HBoxContainer"]
+[node name="Exit" type="Button" parent="ColorRect/Margin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
 text = "  Exit  "
 
-[connection signal="pressed" from="ColorRect/Margin/VBoxContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="ColorRect/Margin/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ColorRect/Margin/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ColorRect/Margin/HBoxContainer/Exit" to="." method="_on_exit_pressed"]

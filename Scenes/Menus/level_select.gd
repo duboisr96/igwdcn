@@ -37,3 +37,7 @@ func _on_exit_button_pressed():
 func _on_timer_timeout():
 	_change_color()
 	$Timer.start()
+
+
+func _on_tutorial_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Levels/tutorial.tscn")
