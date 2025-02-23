@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj4rgdb26x477"]
+[gd_scene load_steps=5 format=3 uid="uid://bj4rgdb26x477"]
+
+[ext_resource type="Script" path="res://Scenes/objects/factory/wall_pinpad.gd" id="1_rn6uy"]
+[ext_resource type="Texture2D" uid="uid://2cx254xe2k0e" path="res://Scenes/gui/popups/popupnobg.png" id="1_tax03"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtq1r"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6lc1g"]
+size = Vector3(4.10074, 1, 1)
+
 [node name="wall_pinpad" type="StaticBody3D" groups=["interactable"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_rn6uy")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137085, 0.0473328, -0.00291443)
@@ -11,3 +18,28 @@ size = Vector3(0.72583, 1.09467, 1.17374)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mtq1r")
+
+[node name="PopUp" type="Sprite3D" parent="."]
+transform = Transform3D(-1.29226e-08, 0, 0.295636, 0, 0.295636, 0, -0.295636, 0, -1.29226e-08, 0.481872, 1.15046, -0.016031)
+texture = ExtResource("1_tax03")
+
+[node name="Label3D" type="Label3D" parent="PopUp"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.0481873, 0.412262, 0.0887344)
+alpha_cut = 2
+modulate = Color(0, 0, 0, 1)
+text = "( E )
+ to Open Computer"
+font_size = 60
+outline_size = 5
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.180638, -0.491145, 0)
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20464, 0, 0)
+shape = SubResource("BoxShape3D_6lc1g")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
